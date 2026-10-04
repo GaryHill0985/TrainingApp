@@ -2802,10 +2802,7 @@
       ],
       "stop_set_when": [
         "Your hips start to sag and you cannot lift them back up.",
-        "You have completed the planned reps.",
-        "The next rep would need a bounce, swing or twist to finish.",
-        "The movement gets shorter just to keep going.",
-        "Fewer than two clean reps look likely.",
+        "You have held for the planned time.",
         "You feel sharp pain, joint pain or anything unusual."
       ],
       "easier_option": "Bend your knees and rest them on the floor, holding a straight line from head to knees.",
@@ -2924,10 +2921,7 @@
       ],
       "stop_set_when": [
         "You start leaning sideways and cannot stay level.",
-        "You have completed the planned reps.",
-        "The next rep would need a bounce, swing or twist to finish.",
-        "The movement gets shorter just to keep going.",
-        "Fewer than two clean reps look likely.",
+        "You have walked the planned distance.",
         "You feel sharp pain, joint pain or anything unusual."
       ],
       "easier_option": "Use a lighter weight or a shorter distance.",
@@ -2960,7 +2954,7 @@
       "name": "Easy Cardio",
       "diagram_key": "cardio",
       "position": "Easy",
-      "position_why": "This exercise light fitness to help recovery.",
+      "position_why": "This is easy fitness to help you recover.",
       "trains": "Your heart and lungs. Kept easy so it helps recovery rather than adding fatigue.",
       "find_equipment": "A bike, treadmill, cross-trainer or rower.",
       "setup": [
@@ -2985,10 +2979,6 @@
       ],
       "stop_set_when": [
         "You cannot speak in sentences (slow down) or you reach the time.",
-        "You have completed the planned reps.",
-        "The next rep would need a bounce, swing or twist to finish.",
-        "The movement gets shorter just to keep going.",
-        "Fewer than two clean reps look likely.",
         "You feel sharp pain, joint pain or anything unusual."
       ],
       "easier_option": "Reduce the time or the pace.",

@@ -72,7 +72,28 @@ export function ExerciseScreen() {
       <p className="mt-2 text-muted">{exercise.position_why}</p>
       <p className="mt-1 text-muted">Effort: {item.effort_target}</p>
 
-      <section className="mt-5">
+      <section className="mt-5 rounded-card border border-line bg-surface p-4" id="log">
+        <h3 className="text-xl font-extrabold">Log your sets</h3>
+        <LogPanel session={session} item={item} exercise={exercise} sets={sets} allSets={allSets} allLogs={allLogs} sessions={sessions} readOnly={readOnly} />
+        {(allSetsLogged || log?.technique_colour) && (
+          readOnly ? (
+            <Card className="mt-4">
+              <p className="font-semibold">Technique: {log?.technique_colour ? plan.meta.technique_colours[log.technique_colour] : 'not recorded'}</p>
+              {log?.pain_flag && <p className="mt-1 font-semibold text-danger">Something hurt</p>}
+              {log?.note && <p className="mt-1 text-muted">Note: {log.note}</p>}
+            </Card>
+          ) : (
+            <TechniquePrompt exercise={exercise} log={log} onChange={(patch) => void saveExerciseLog(session.id, exercise.id, patch)} />
+          )
+        )}
+        {!readOnly && progress.complete && (
+          <p className="mt-4 text-center text-lg font-bold text-ok">Exercise done. Saved.</p>
+        )}
+      </section>
+
+      <h3 className="mt-8 text-lg font-bold">How to do it</h3>
+
+      <section className="mt-3">
         <h3 className="text-lg font-bold">What it trains</h3>
         <p className="mt-1">{exercise.trains}</p>
       </section>
@@ -96,24 +117,6 @@ export function ExerciseScreen() {
         <MuscleView exercise={exercise} />
       </div>}
 
-      <section className="mt-8 border-t-2 border-line pt-5" id="log">
-        <h3 className="text-xl font-extrabold">Log your sets</h3>
-        <LogPanel session={session} item={item} exercise={exercise} sets={sets} allSets={allSets} allLogs={allLogs} sessions={sessions} readOnly={readOnly} />
-        {(allSetsLogged || log?.technique_colour) && (
-          readOnly ? (
-            <Card className="mt-4">
-              <p className="font-semibold">Technique: {log?.technique_colour ? plan.meta.technique_colours[log.technique_colour] : 'not recorded'}</p>
-              {log?.pain_flag && <p className="mt-1 font-semibold text-danger">Something hurt</p>}
-              {log?.note && <p className="mt-1 text-muted">Note: {log.note}</p>}
-            </Card>
-          ) : (
-            <TechniquePrompt exercise={exercise} log={log} onChange={(patch) => void saveExerciseLog(session.id, exercise.id, patch)} />
-          )
-        )}
-        {!readOnly && progress.complete && (
-          <p className="mt-4 text-center text-lg font-bold text-ok">Exercise done. Saved.</p>
-        )}
-      </section>
     </Screen>
   )
 }
