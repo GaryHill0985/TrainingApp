@@ -4,8 +4,11 @@ import { BrowserRouter } from 'react-router'
 import './index.css'
 import { App } from './app/App'
 import { applyTheme, getTheme } from './lib/theme'
+import { ensurePlanCache } from './plan/cache'
+import { startSync } from './sync/engine'
 
 applyTheme(getTheme())
+void ensurePlanCache().then(() => startSync())
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

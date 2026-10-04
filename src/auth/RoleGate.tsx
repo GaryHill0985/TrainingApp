@@ -4,6 +4,9 @@ import { getDevice, hashPin, isUnlocked, setDevice, setUnlocked, type Role } fro
 import { Screen } from '../ui/Screen'
 import { Button } from '../ui/Button'
 import { MANTRA } from '../plan/seed'
+import { Field } from '../ui/Field'
+import { pairDevice } from './pairing'
+import { cloudConfigured } from '../sync/supabase'
 
 interface Props {
   /** When set, only this role may pass; otherwise the gate just routes to the right home. */
@@ -33,7 +36,9 @@ export function RoleGate({ require, children }: Props) {
 
 function WhoPicker({ onDone }: { onDone: (d: { role: Role; pinHash: string }) => void }) {
   const [role, setRole] = useState<Role | null>(null)
-  if (role) return <PinSetup role={role} onBack={() => setRole(null)} onDone={(pinHash) => onDone({ role, pinHash })} />
+  const [paired, setPaired] = useState(false)
+  if (role && !paired) return <PairScreen role={role} onBack={() => setRole(null)} onDone={() => setPaired(true)} />
+  if (role) return <PinSetup role={role} onBack={() => { setPaired(false); setRole(null) }} onDone={(pinHash) => onDone({ role, pinHash })} />
   return (
     <Screen>
       <div className="mx-auto flex max-w-md flex-col gap-6 pt-10">
@@ -135,6 +140,44 @@ function PinLock({ role, pinHash, onUnlock }: { role: Role; pinHash: string; onU
         {wrong && <p className="mt-2 font-semibold text-warn">That was not right. Try again.</p>}
         <div className="mt-8"><PinPad value={pin} onChange={tryPin} /></div>
         <p className="mt-10 text-center text-sm text-muted">{MANTRA}</p>
+      </div>
+    </Screen>
+  )
+}
+
+/**
+ * Done once per phone by Dad: signs in with the real account behind the chosen role.
+ * After this, only the PIN is ever asked for.
+ */
+function PairScreen({ role, onBack, onDone }: { role: Role; onBack: () => void; onDone: () => void }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [problem, setProblem] = useState<string | null>(null)
+  const name = role === 'coach' ? 'Dad' : 'Lucas'
+
+  async function submit() {
+    setBusy(true)
+    setProblem(null)
+    const err = await pairDevice(role, email, password)
+    setBusy(false)
+    if (err) setProblem(err)
+    else onDone()
+  }
+
+  return (
+    <Screen>
+      <div className="mx-auto max-w-md pt-6">
+        <h1 className="text-2xl font-extrabold">Connect this phone to {name}'s account</h1>
+        <p className="mt-2 text-muted">Dad does this once. After that the app only asks for a PIN.</p>
+        {!cloudConfigured && <p className="mt-3 font-semibold text-warn">This build has no cloud settings, so it cannot connect yet.</p>}
+        <form className="mt-6 flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); void submit() }}>
+          <Field label="Email" type="email" autoComplete="username" inputMode="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Field label="Password" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {problem && <p className="font-semibold text-warn">{problem}</p>}
+          <Button type="submit" variant="primary" size="lg" full disabled={busy || !email || !password}>{busy ? 'Connecting' : 'Connect'}</Button>
+          <Button variant="quiet" full onClick={onBack} disabled={busy}>Go back</Button>
+        </form>
       </div>
     </Screen>
   )

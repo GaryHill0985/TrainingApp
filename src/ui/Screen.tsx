@@ -31,13 +31,13 @@ export function Screen({ title, backTo, backLabel = 'Back', right, children, foo
           ) : (
             <span className="w-2" />
           )}
-          <h1 className="min-w-0 flex-1 truncate text-xl font-extrabold tracking-tight">{title}</h1>
+          <h1 className="min-w-0 flex-1 text-lg font-extrabold leading-tight tracking-tight">{title}</h1>
           {right}
         </header>
       )}
       <main className="flex-1 px-4 pb-6 pt-4">{children}</main>
       {footer && (
-        <footer className="safe-bottom sticky bottom-0 z-10 border-t border-line bg-bg/95 px-4 pt-3 backdrop-blur">
+        <footer className="sticky z-10 border-t border-line bg-bg/95 px-4 pb-3 pt-3 backdrop-blur" style={{ bottom: 'var(--nav-h, 0px)' }}>
           {footer}
         </footer>
       )}
