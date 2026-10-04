@@ -64,5 +64,7 @@ for (const f of files) {
     process.exit(1)
   }
 }
+// Ask the API layer (PostgREST) to pick up the new tables straight away.
+await client.query("notify pgrst, 'reload schema'")
 await client.end()
 console.log('Migrations up to date.')
