@@ -67,14 +67,57 @@ images) goes in the public-read `media` storage bucket under random paths; only 
 npm run dev
 ```
 
+To try it on a phone on the same Wi-Fi: `npm run dev -- --host` and open the printed network URL.
+Service workers only register on `localhost` or HTTPS, so "install to home screen" needs the deployed URL.
+
 ## Deploying
 
-_Milestone 1/2: Vercel or Netlify, build command `npm run build`, output `dist`._
+The app is a static site. Either host works on the free tier and redeploys on every push to `main`:
 
-## Sign-in model
+- **Vercel:** import the GitHub repo, framework "Vite", build `npm run build`, output `dist`.
+  Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as environment variables. `vercel.json` handles the SPA rewrite.
+- **Netlify:** build `npm run build`, publish `dist`, same two environment variables. `public/_redirects` handles the SPA rewrite.
 
-Each phone is paired once by the coach using the real email + password of that role's account.
-After that, the app only asks for a 4-digit PIN (a local lock on the device). "Switch user" clears the pairing.
+Then on each phone: open the URL in Safari (iOS) or Chrome (Android) and use "Add to Home Screen".
+It launches full-screen and works with no connection after the first open.
+
+## First-time setup on each phone
+
+1. Open the app. Tap **Lucas** or **Dad**.
+2. **Connect this phone**: Dad types that role's email and password once (from `.env`).
+3. Choose a 4-digit PIN. From then on the app only ever asks for the PIN.
+
+"Switch user" (bottom of Lucas's Today screen, and in Dad's Settings) signs the phone out so it can be paired again.
+
+## How sync works
+
+Every write goes to the phone's own database first and shows instantly, then into an outbox.
+The outbox is pushed to Supabase whenever the phone is online (on reconnect, when the app comes to the front,
+after each write, and once a minute). Changes from the cloud are pulled by `updated_at` and also arrive live
+over realtime. Conflicts are last-write-wins per row. The status badge only ever says
+"Synced", "Syncing", "Saved on this phone" or "On this phone only".
+
+## Acceptance checklist
+
+- [x] Installs to the home screen (manifest + service worker, icons, standalone display) and launches full-screen
+- [x] Lucas can complete and log a full session with no internet; it syncs later automatically
+- [x] Every exercise renders its real content from the seed: cues, stop rules, position chip, video slot, photo slot
+- [x] Logging a normal set is at most 3 taps plus two numbers; the last weight is pre-filled
+- [x] Technique colour, pain flag and notes are captured and shown to the coach
+- [x] Coach sees sessions, set-by-set detail, per-exercise progress charts, adherence, and flags at the top
+- [x] Pain flag shows the stop rules and "tell Dad"; back extension weight shows the reminder and flags the coach
+- [x] Tap targets at least 48px, body text 18px, WCAG AA palette, reduced motion respected, fixed nav, literal labels
+- [x] Coach-set videos, photos and plan edits survive a re-seed (`coach_edited_fields`)
+- [x] Muscle data cards and the Muscle & Motion signpost on every non-cardio exercise; depth toggle; no bundled diagrams
+- [x] Month and week calendar with training days and activity/food/sleep markers; day detail; calm empty days
+- [x] Other activity, food diary and sleep logging, all offline, all optional; inputs rendered from the metric list
+- [x] Coach can view the calendar, chart any metric, see activity history, and toggle or add metrics
+- [x] Food logging shows no targets, limits or warnings
+- [x] Home and Goals show the "why", inspiration gallery (coach-uploaded), countdown and process milestones
+- [x] Event is coach-editable; pull-up ladder and strength bests are tracked
+- [x] Default theme is the original dark theme, switchable to light; no third-party brand marks
+- [x] No body-fat, weight or aesthetic targets, ranking or comparison anywhere
+- [ ] Push notifications (deliberately not built in v1)
 
 ## Assumptions and decisions
 
