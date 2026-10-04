@@ -1,7 +1,6 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router'
 import { BottomNav, type NavItem } from '../ui/BottomNav'
 import { RoleGate } from '../auth/RoleGate'
-import { Placeholder } from './Placeholder'
 import { Today } from '../features/trainee/Today'
 import { SessionScreen } from '../features/trainee/SessionScreen'
 import { ExerciseScreen } from '../features/trainee/ExerciseScreen'
@@ -17,6 +16,11 @@ import { CoachExerciseEdit } from '../features/coach/CoachExerciseEdit'
 import { CoachAdvanced } from '../features/coach/CoachAdvanced'
 import { CoachMuscles, CoachMuscleEdit } from '../features/coach/CoachMuscles'
 import { CoachSettings } from '../features/coach/CoachSettings'
+import { CoachMetrics } from '../features/coach/CoachMetrics'
+import { Calendar } from '../features/calendar/Calendar'
+import { DayDetail } from '../features/calendar/DayDetail'
+import { AddToToday } from '../features/lifelog/AddToToday'
+import { Goals } from '../features/goals/Goals'
 
 const traineeNav: NavItem[] = [
   { to: '/lucas', label: 'Today', icon: 'home' },
@@ -63,9 +67,12 @@ export function App() {
         <Route path="session/:sessionId" element={<SessionScreen />} />
         <Route path="session/:sessionId/exercise/:order" element={<ExerciseScreen />} />
         <Route path="session/:sessionId/finish" element={<FinishScreen />} />
-        <Route path="calendar" element={<Placeholder title="Calendar" />} />
+        <Route path="calendar" element={<Calendar role="trainee" />} />
+        <Route path="day/:date" element={<DayDetail role="trainee" />} />
+        <Route path="log" element={<AddToToday />} />
+        <Route path="log/:date" element={<AddToToday />} />
         <Route path="history" element={<History />} />
-        <Route path="goals" element={<Placeholder title="Goals" />} />
+        <Route path="goals" element={<Goals role="trainee" />} />
       </Route>
 
       <Route path="/coach" element={<RoleGate require="coach"><CoachLayout /></RoleGate>}>
@@ -74,8 +81,10 @@ export function App() {
         <Route path="sessions/:sessionId" element={<CoachSessionDetail />} />
         <Route path="progress" element={<CoachProgress />} />
         <Route path="settings" element={<CoachSettings />} />
-        <Route path="calendar" element={<Placeholder title="Calendar" />} />
-        <Route path="goals" element={<Placeholder title="Goals" />} />
+        <Route path="calendar" element={<Calendar role="coach" />} />
+        <Route path="day/:date" element={<DayDetail role="coach" />} />
+        <Route path="metrics" element={<CoachMetrics />} />
+        <Route path="goals" element={<Goals role="coach" />} />
         <Route path="plan" element={<CoachPlan />} />
         <Route path="plan/advanced" element={<CoachAdvanced />} />
         <Route path="plan/exercise/:exerciseId" element={<CoachExerciseEdit />} />

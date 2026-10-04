@@ -70,7 +70,16 @@ export function Today() {
         </section>
       )}
 
-      <Countdown compact className="mt-8" />
+      <div className="mt-8 grid gap-3">
+        <Link to="/lucas/log" className="block"><Button variant="secondary" size="lg" full icon="plus">Add to today</Button></Link>
+        <Link to="/lucas/goals" className="block">
+          <Card className="flex items-center justify-between gap-3">
+            <span><span className="block text-sm font-bold uppercase tracking-wide text-muted">{plan.goals.vision.title}</span><span className="block font-semibold">{plan.goals.vision.statement}</span></span>
+          </Card>
+        </Link>
+      </div>
+
+      <Countdown compact className="mt-4" />
 
       <p className="mt-8 text-center text-muted">{plan.meta.mantra}</p>
       <p className="mt-8 text-center text-sm">
