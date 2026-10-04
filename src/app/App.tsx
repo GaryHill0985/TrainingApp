@@ -12,6 +12,11 @@ import { CoachHome } from '../features/coach/CoachHome'
 import { CoachSessions } from '../features/coach/CoachSessions'
 import { CoachSessionDetail } from '../features/coach/CoachSessionDetail'
 import { CoachProgress } from '../features/coach/CoachProgress'
+import { CoachPlan } from '../features/coach/CoachPlan'
+import { CoachExerciseEdit } from '../features/coach/CoachExerciseEdit'
+import { CoachAdvanced } from '../features/coach/CoachAdvanced'
+import { CoachMuscles, CoachMuscleEdit } from '../features/coach/CoachMuscles'
+import { CoachSettings } from '../features/coach/CoachSettings'
 
 const traineeNav: NavItem[] = [
   { to: '/lucas', label: 'Today', icon: 'home' },
@@ -68,9 +73,14 @@ export function App() {
         <Route path="sessions" element={<CoachSessions />} />
         <Route path="sessions/:sessionId" element={<CoachSessionDetail />} />
         <Route path="progress" element={<CoachProgress />} />
-        <Route path="settings" element={<Placeholder title="Settings" />} />
+        <Route path="settings" element={<CoachSettings />} />
         <Route path="calendar" element={<Placeholder title="Calendar" />} />
-        <Route path="plan" element={<Placeholder title="Plan" />} />
+        <Route path="goals" element={<Placeholder title="Goals" />} />
+        <Route path="plan" element={<CoachPlan />} />
+        <Route path="plan/advanced" element={<CoachAdvanced />} />
+        <Route path="plan/exercise/:exerciseId" element={<CoachExerciseEdit />} />
+        <Route path="plan/muscles" element={<CoachMuscles />} />
+        <Route path="plan/muscles/:muscleId" element={<CoachMuscleEdit />} />
       </Route>
 
       <Route path="/switch-user" element={<SwitchUser />} />

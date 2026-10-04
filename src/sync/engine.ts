@@ -110,7 +110,10 @@ async function pushOutbox() {
   const items = await db.outbox.orderBy('seq').toArray()
   for (const item of items) {
     const table = item.table as SyncedTable
-    const { error } = await supabase().from(table).upsert(item.payload, { onConflict: conflictKey(table) })
+    const { __delete, ...payload } = item.payload as Record<string, unknown> & { __delete?: boolean }
+    const { error } = __delete
+      ? await supabase().from(table).delete().match(deleteMatch(table, payload))
+      : await supabase().from(table).upsert(payload, { onConflict: conflictKey(table) })
     if (!error) {
       await db.outbox.delete(item.seq!)
       continue
@@ -120,6 +123,12 @@ async function pushOutbox() {
     await db.outbox.update(item.seq!, { attempts: item.attempts + 1, last_error: error.message })
     if (import.meta.env.DEV) console.warn('[sync] rejected', table, error.message)
   }
+}
+
+function deleteMatch(table: SyncedTable, row: Record<string, unknown>): Record<string, unknown> {
+  if (table === 'exercise_muscles') return { exercise_id: row.exercise_id, muscle_id: row.muscle_id, role: row.role }
+  if (table === 'metric_definitions' || table === 'activity_types' || table === 'plan_settings') return { key: row.key }
+  return { id: row.id }
 }
 
 function conflictKey(table: SyncedTable): string {
