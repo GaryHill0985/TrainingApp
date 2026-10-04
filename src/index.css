@@ -1,0 +1,130 @@
+@import '@fontsource-variable/inter';
+@import 'tailwindcss';
+
+/*
+  Theme tokens. Values come from lucas_plan_seed.json > theme.palettes.
+  Default is athletic_dark; [data-theme="light"] switches to light_highcontrast.
+  Body text is 18px minimum everywhere (autism-friendly + accessibility rule).
+*/
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --color-bg: #0e1116;
+  --color-surface: #161b22;
+  --color-surface2: #1d232c;
+  --color-text: #f2f5f7;
+  --color-muted: #9aa7b2;
+  --color-accent: #19e3b1;
+  --color-accent2: #2b7a9b;
+  --color-line: #2a3340;
+  --color-danger: #e5634d;
+  --color-warn: #e0a93b;
+  --color-ok: #36c98e;
+
+  /* Text colour to put on top of the accent (dark on mint keeps AA contrast). */
+  --color-on-accent: #0e1116;
+
+  /* Position chips (theme.position_chip_colours.dark) */
+  --color-pos-lengthened: #39a7ce;
+  --color-pos-mid: #9aa7b2;
+  --color-pos-shortened: #36c98e;
+  --color-pos-trunk: #b191e6;
+  --color-pos-full: #e0a93b;
+  --color-pos-easy: #9aa7b2;
+
+  --radius-card: 1.25rem;
+  --radius-control: 1rem;
+
+  --text-base: 1.125rem; /* 18px */
+  --text-base--line-height: 1.5;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.45;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.375rem;
+  --text-3xl--line-height: 1.1;
+}
+
+:root[data-theme='light'] {
+  --color-bg: #ffffff;
+  --color-surface: #f4f8fa;
+  --color-surface2: #eaf1f4;
+  --color-text: #16202a;
+  --color-muted: #5b6b76;
+  --color-accent: #1f5e79;
+  --color-accent2: #2b7a9b;
+  --color-line: #d5dee4;
+  --color-danger: #c0432b;
+  --color-warn: #c7891f;
+  --color-ok: #2e8b57;
+  --color-on-accent: #ffffff;
+
+  --color-pos-lengthened: #1f5e79;
+  --color-pos-mid: #5b6b76;
+  --color-pos-shortened: #2e8b57;
+  --color-pos-trunk: #7a5ba8;
+  --color-pos-full: #c7891f;
+  --color-pos-easy: #5b6b76;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-bg text-text font-sans text-base antialiased;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Large, easy-to-read inputs; no browser zoom-on-focus on iOS (needs >=16px). */
+  input, select, textarea, button {
+    font: inherit;
+    color: inherit;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* Minimal, consistent motion. Reduced motion turns it off entirely. */
+  * {
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@utility tap {
+  /* Minimum touch target (48x48) */
+  min-height: 3rem;
+  min-width: 3rem;
+}
+
+@utility safe-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+}
+@utility safe-top {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+}
