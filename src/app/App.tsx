@@ -8,6 +8,10 @@ import { ExerciseScreen } from '../features/trainee/ExerciseScreen'
 import { FinishScreen } from '../features/trainee/FinishScreen'
 import { History } from '../features/trainee/History'
 import { SwitchUser } from '../auth/SwitchUser'
+import { CoachHome } from '../features/coach/CoachHome'
+import { CoachSessions } from '../features/coach/CoachSessions'
+import { CoachSessionDetail } from '../features/coach/CoachSessionDetail'
+import { CoachProgress } from '../features/coach/CoachProgress'
 
 const traineeNav: NavItem[] = [
   { to: '/lucas', label: 'Today', icon: 'home' },
@@ -60,9 +64,11 @@ export function App() {
       </Route>
 
       <Route path="/coach" element={<RoleGate require="coach"><CoachLayout /></RoleGate>}>
-        <Route index element={<Placeholder title="Coach home" />} />
-        <Route path="sessions" element={<Placeholder title="Sessions" />} />
-        <Route path="progress" element={<Placeholder title="Progress" />} />
+        <Route index element={<CoachHome />} />
+        <Route path="sessions" element={<CoachSessions />} />
+        <Route path="sessions/:sessionId" element={<CoachSessionDetail />} />
+        <Route path="progress" element={<CoachProgress />} />
+        <Route path="settings" element={<Placeholder title="Settings" />} />
         <Route path="calendar" element={<Placeholder title="Calendar" />} />
         <Route path="plan" element={<Placeholder title="Plan" />} />
       </Route>
