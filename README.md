@@ -39,7 +39,27 @@ Guiding mantra: **Technique first. Control second. Weight third.**
 
 ## Database
 
-_Milestone 2 fills this in: migrations, the idempotent seed import, and creating the two user accounts._
+All three steps read `.env`. Run them once after creating the Supabase project, and again whenever
+`lucas_plan_seed.json` or `supabase/migrations/` changes.
+
+```bash
+npm run db:setup
+```
+
+That runs, in order:
+
+| Command | What it does |
+|---|---|
+| `npm run db:migrate` | Applies `supabase/migrations/*.sql` once each (tracked in `schema_migrations`). Needs `SUPABASE_DB_PASSWORD`. |
+| `npm run db:seed` | Idempotent import of `lucas_plan_seed.json`. Re-running updates, never duplicates. Coach-edited fields (anything listed in a row's `coach_edited_fields`, plus non-empty `video_url` / `photo_url`) are never overwritten. Needs `SUPABASE_SERVICE_ROLE_KEY`. |
+| `npm run db:users` | Creates or refreshes the two accounts (Lucas = trainee, Dad = coach) from the `TRAINEE_*` / `COACH_*` variables. |
+
+Schema summary: plan tables (`plan_settings`, `workouts`, `workout_items`, `exercises`, `muscles`, `exercise_muscles`,
+`muscle_assets`, `metric_definitions`, `activity_types`) are readable by both roles and writable by the coach.
+Logged tables (`sessions`, `set_logs`, `exercise_logs`, `metric_logs`, `activity_entries`, `food_entries`,
+`milestone_progress`) are writable by their owner and readable by the coach, all enforced with Row-Level Security.
+Realtime is enabled on the logged tables and the plan tables. Media (machine photos, demo videos, inspiration
+images) goes in the public-read `media` storage bucket under random paths; only the coach can upload.
 
 ## Running locally
 
