@@ -6,6 +6,7 @@ import { SessionScreen } from '../features/trainee/SessionScreen'
 import { ExerciseScreen } from '../features/trainee/ExerciseScreen'
 import { FinishScreen } from '../features/trainee/FinishScreen'
 import { History } from '../features/trainee/History'
+import { TraineePlan, TraineeExerciseInfo } from '../features/trainee/PlanScreen'
 import { SwitchUser } from '../auth/SwitchUser'
 import { CoachHome } from '../features/coach/CoachHome'
 import { CoachSessions } from '../features/coach/CoachSessions'
@@ -26,6 +27,7 @@ const traineeNav: NavItem[] = [
   { to: '/lucas', label: 'Today', icon: 'home' },
   { to: '/lucas/calendar', label: 'Calendar', icon: 'calendar' },
   { to: '/lucas/history', label: 'History', icon: 'history' },
+  { to: '/lucas/plan', label: 'Plan', icon: 'plan' },
   { to: '/lucas/goals', label: 'Goals', icon: 'goal' },
 ]
 
@@ -72,6 +74,8 @@ export function App() {
         <Route path="log" element={<AddToToday />} />
         <Route path="log/:date" element={<AddToToday />} />
         <Route path="history" element={<History />} />
+        <Route path="plan" element={<TraineePlan />} />
+        <Route path="plan/exercise/:exerciseId" element={<TraineeExerciseInfo />} />
         <Route path="goals" element={<Goals role="trainee" />} />
       </Route>
 
