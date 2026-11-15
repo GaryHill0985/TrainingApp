@@ -9,7 +9,7 @@ import { completionPercent, recentFlags, thisWeek } from './data'
 import { formatShort } from '../../lib/dates'
 import { useSyncStatus } from '../../sync/useSync'
 
-const flagLabel = { red: 'Red technique', pain: 'Something hurt', back_extension: 'Weight added on back extension' } as const
+const flagLabel = { red: 'Red technique', pain: 'Something hurt', back_extension: 'Weight added or increased on a gated exercise' } as const
 
 export function CoachHome() {
   const plan = usePlan()
@@ -42,7 +42,7 @@ export function CoachHome() {
                 <Link to={`/coach/sessions/${f.session.id}`} className={`block rounded-card border-2 bg-surface p-4 ${f.kind === 'back_extension' ? 'border-warn' : 'border-danger'}`}>
                   <p className={`text-sm font-bold uppercase tracking-wide ${f.kind === 'back_extension' ? 'text-warn' : 'text-danger'}`}>{flagLabel[f.kind]}</p>
                   <p className="mt-1 text-lg font-bold">{plan.exercises[f.exercise_id]?.name ?? f.exercise_id}</p>
-                  <p className="text-muted">{formatShort(f.session.date)} · {plan.workouts.find((w) => w.id === f.session.workout_id)?.name}</p>
+                  <p className="text-muted">{formatShort(f.session.date)} · {plan.allWorkouts.find((w) => w.id === f.session.workout_id)?.name}</p>
                   {f.note && <p className="mt-1">“{f.note}”</p>}
                 </Link>
               </li>
@@ -54,7 +54,7 @@ export function CoachHome() {
       {live && (
         <Card tone="accent" className="mt-6">
           <p className="text-sm font-bold uppercase tracking-wide text-accent">Training now</p>
-          <p className="mt-1 text-xl font-extrabold">{plan.workouts.find((w) => w.id === live.workout_id)?.name}</p>
+          <p className="mt-1 text-xl font-extrabold">{plan.allWorkouts.find((w) => w.id === live.workout_id)?.name}</p>
           <p className="text-muted">{completionPercent(plan, live, sets.filter((s) => s.session_id === live.id), logs.filter((l) => l.session_id === live.id))}% of exercises done so far</p>
           <Link to={`/coach/sessions/${live.id}`} className="mt-2 inline-block font-semibold text-accent">Watch this session</Link>
         </Card>
@@ -65,7 +65,7 @@ export function CoachHome() {
         <Card className="mt-2">
           <p className="text-3xl font-extrabold">{week.done} of {plan.workouts.length}</p>
           <p className="text-muted">sessions done since {formatShort(week.start)}</p>
-          <p className="mt-2 text-muted">Last session: {last ? `${formatShort(last.date)} · ${plan.workouts.find((w) => w.id === last.workout_id)?.name}` : 'none yet'}</p>
+          <p className="mt-2 text-muted">Last session: {last ? `${formatShort(last.date)} · ${plan.allWorkouts.find((w) => w.id === last.workout_id)?.name}` : 'none yet'}</p>
         </Card>
       </section>
 
@@ -75,7 +75,7 @@ export function CoachHome() {
           <Link to={`/coach/sessions/${last.id}`} className="mt-2 block">
             <Card className="flex items-center justify-between gap-3">
               <span>
-                <span className="block text-xl font-extrabold">{plan.workouts.find((w) => w.id === last.workout_id)?.name}</span>
+                <span className="block text-xl font-extrabold">{plan.allWorkouts.find((w) => w.id === last.workout_id)?.name}</span>
                 <span className="block text-muted">{formatShort(last.date)} · {completionPercent(plan, last, sets.filter((s) => s.session_id === last.id), logs.filter((l) => l.session_id === last.id))}% complete</span>
                 {last.overall_note && <span className="mt-1 block">“{last.overall_note}”</span>}
               </span>

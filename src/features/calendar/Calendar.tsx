@@ -22,7 +22,7 @@ export function Calendar({ role }: { role: 'trainee' | 'coach' }) {
   const [cursor, setCursor] = useState(() => todayKey())
   const base = role === 'coach' ? '/coach' : '/lucas'
 
-  const workoutColour = (id: string) => WORKOUT_COLOURS[Math.max(0, plan.workouts.findIndex((w) => w.id === id)) % WORKOUT_COLOURS.length]
+  const workoutColour = (id: string) => WORKOUT_COLOURS[Math.max(0, plan.allWorkouts.findIndex((w) => w.id === id)) % WORKOUT_COLOURS.length]
 
   const byDay = useMemo(() => {
     const m = new Map<string, { sessions: typeof sessions; activity: boolean; food: boolean; sleep: boolean }>()
@@ -85,7 +85,7 @@ export function Calendar({ role }: { role: 'trainee' | 'coach' }) {
           return (
             <Link key={d} to={`${base}/day/${d}`} className={`flex min-h-16 flex-col items-center justify-start gap-1 rounded-control border p-1 ${isToday ? 'border-accent' : 'border-line'} ${inMonth(d) ? 'bg-surface' : 'opacity-40'}`} aria-label={d}>
               <span className={`text-sm font-bold ${isToday ? 'text-accent' : ''}`}>{parseKey(d).getDate()}</span>
-              {s && <span className="w-full truncate rounded px-0.5 text-[10px] font-bold leading-4 text-on-accent" style={{ background: workoutColour(s.workout_id), opacity: s.status === 'complete' ? 1 : 0.6 }}>{plan.workouts.find((w) => w.id === s.workout_id)?.name.replace(' Day', '') ?? ''}</span>}
+              {s && <span className="w-full truncate rounded px-0.5 text-[10px] font-bold leading-4 text-on-accent" style={{ background: workoutColour(s.workout_id), opacity: s.status === 'complete' ? 1 : 0.6 }}>{plan.allWorkouts.find((w) => w.id === s.workout_id)?.name.replace(' Day', '') ?? ''}</span>}
               <span className="flex gap-0.5">
                 {info?.activity && <span className="size-1.5 rounded-full bg-accent2" title="Activity" />}
                 {info?.food && <span className="size-1.5 rounded-full bg-warn" title="Food" />}

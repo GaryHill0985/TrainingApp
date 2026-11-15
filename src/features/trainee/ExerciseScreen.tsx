@@ -29,7 +29,7 @@ export function ExerciseScreen() {
   const allLogs = useAllLogs()
   const sessions = useSessions()
 
-  const workout = session ? plan.workouts.find((w) => w.id === session.workout_id) : undefined
+  const workout = session ? plan.allWorkouts.find((w) => w.id === session.workout_id) : undefined
   const idx = workout ? workout.items.findIndex((i) => String(i.order) === order) : -1
   const item = workout && idx >= 0 ? workout.items[idx] : undefined
   const exercise = item ? plan.exercises[item.exercise_id] : undefined

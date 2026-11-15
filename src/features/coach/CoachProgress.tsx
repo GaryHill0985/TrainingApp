@@ -30,7 +30,7 @@ export function CoachProgress() {
   const logs = useAllLogs()
   const exerciseIds = useMemo(() => {
     const seen = new Set<string>()
-    for (const w of plan.workouts) for (const it of w.items) seen.add(it.exercise_id)
+    for (const w of plan.allWorkouts) for (const it of w.items) seen.add(it.exercise_id)
     return [...seen]
   }, [plan])
   const [exerciseId, setExerciseId] = useState(exerciseIds[0] ?? '')

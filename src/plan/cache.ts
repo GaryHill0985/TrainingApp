@@ -23,7 +23,7 @@ export async function ensurePlanCache() {
     )
   }
   if ((await db.workouts.count()) === 0) {
-    await db.workouts.bulkPut(seed.workouts.map((w, i) => ({ id: w.id, name: w.name, subtitle: w.subtitle, demand: w.demand, sort_order: i, coach_edited_fields: [], updated_at: now })))
+    await db.workouts.bulkPut(seed.workouts.map((w, i) => ({ id: w.id, name: w.name, subtitle: w.subtitle, demand: w.demand, sort_order: i, archived: w.archived ?? false, archive_note: w.archive_note ?? '', coach_edited_fields: [], updated_at: now })))
     const items: WorkoutItemRow[] = seed.workouts.flatMap((w) => w.items.map((it) => ({
       id: `${w.id}:${it.order}`, workout_id: w.id, order: it.order, exercise_id: it.exercise_id, sets: it.sets,
       rep_range: it.rep_range, rest: it.rest, effort_target: it.effort_target, warmup_sets: it.warmup_sets,

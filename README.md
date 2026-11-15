@@ -2,11 +2,13 @@
 
 A calm, mobile-first, installable (PWA) strength-training app with two roles:
 
-- **Lucas (trainee)** runs and logs his 5-day push/pull plan at the gym, fully offline, and it syncs later.
+- **Lucas (trainee)** runs and logs his 6-day push/pull/legs plan at the gym, fully offline, and it syncs later.
 - **Dad (coach)** sees sessions, set-by-set detail, technique colours, pain flags and progress remotely.
 
 The plan content (workouts, exercises, cues, safety rules, muscles, goals, theme) lives in
 [`lucas_plan_seed.json`](./lucas_plan_seed.json). It is the single source of truth: the app renders it and never invents content.
+Workouts from an earlier plan version stay in the seed with `"archived": true` (their sessions still reference them);
+Lucas never sees them, the coach can read them under Plan → Archived plans.
 
 Guiding mantra: **Technique first. Control second. Weight third.**
 

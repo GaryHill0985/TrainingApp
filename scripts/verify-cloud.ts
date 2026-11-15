@@ -5,6 +5,7 @@
  *   npm run db:verify
  */
 import 'dotenv/config'
+import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
 const url = process.env.VITE_SUPABASE_URL!, anon = process.env.VITE_SUPABASE_ANON_KEY!
 const ok = (label: string, pass: boolean, detail = '') => console.log(`${pass ? 'PASS' : 'FAIL'}  ${label}${detail ? ' — ' + detail : ''}`)
@@ -22,7 +23,8 @@ const dp = await dad.from('profiles').select('role').eq('id', d.data.user!.id).s
 ok('Dad profile role = coach', dp.data?.role === 'coach', dp.error?.message ?? dp.data?.role)
 
 const ex = await lucas.from('exercises').select('id').limit(100)
-ok('Lucas can read the plan', (ex.data?.length ?? 0) === 29, `${ex.data?.length} exercises`)
+const seedExercises = Object.keys(JSON.parse(readFileSync(new URL('../lucas_plan_seed.json', import.meta.url), 'utf8')).exercises).length
+ok('Lucas can read the plan', (ex.data?.length ?? 0) === seedExercises, `${ex.data?.length} exercises (seed has ${seedExercises})`)
 
 const id = crypto.randomUUID(), now = new Date().toISOString()
 const ins = await lucas.from('sessions').insert({ id, user_id: l.data.user!.id, workout_id: 'Push A', date: now.slice(0, 10), status: 'in_progress', started_at: now, updated_at: now })

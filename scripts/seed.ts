@@ -17,6 +17,8 @@ const sb = createClient(url, serviceKey, { auth: { persistSession: false } })
 const seed: any = JSON.parse(readFileSync(new URL('../lucas_plan_seed.json', import.meta.url), 'utf8'))
 
 type Row = Record<string, unknown>
+// Stamped on every row so devices (which pull by updated_at) pick the change up. Postgres only sets it on insert.
+const now = new Date().toISOString()
 
 function fail(where: string, err: { message: string } | null) {
   if (err) { console.error(`${where}: ${err.message}`); process.exit(1) }
@@ -59,7 +61,7 @@ async function upsertRespectingEdits(table: string, rows: Row[], idCol = 'id') {
     { key: 'theme', value: seed.theme },
     { key: 'positions', value: seed.positions },
     { key: 'week', value: seed.meta.week },
-  ]
+  ].map((d) => ({ ...d, updated_at: now }))
   const { data: existing, error } = await sb.from('plan_settings').select('key, coach_edited')
   fail('plan_settings read', error)
   const editedKeys = new Set((existing ?? []).filter((r: Row) => r.coach_edited).map((r: Row) => r.key as string))
@@ -74,7 +76,7 @@ async function upsertRespectingEdits(table: string, rows: Row[], idCol = 'id') {
 // ---- muscles ----
 await upsertRespectingEdits('muscles', (Object.values(seed.muscles) as Row[]).map((m: Row) => ({
   id: m.id, name: m.name, region: m.region, origin: m.origin, insertion: m.insertion,
-  action: m.action, line_of_pull: m.line_of_pull, two_joint: m.two_joint, note: m.note,
+  action: m.action, line_of_pull: m.line_of_pull, two_joint: m.two_joint, note: m.note, updated_at: now,
 })))
 
 // ---- exercises ----
@@ -85,7 +87,7 @@ const exerciseRows: Row[] = (Object.values(seed.exercises) as Row[]).map((e: Row
   stop_set_when: e.stop_set_when, easier_option: e.easier_option, progress_when: e.progress_when,
   video_search_query: e.video_search_query, video_search_url: e.video_search_url,
   video_url: e.video_url, needs_photo: e.needs_photo, photo_url: e.photo_url,
-  ask_dad_before_loading: e.ask_dad_before_loading,
+  ask_dad_before_loading: e.ask_dad_before_loading, updated_at: now,
 }))
 // video_url / photo_url are coach-owned once set: never clobber a non-empty value with the seed's empty one.
 {
@@ -130,6 +132,7 @@ await upsertRespectingEdits('exercises', exerciseRows)
 // ---- workouts + items ----
 await upsertRespectingEdits('workouts', seed.workouts.map((w: Row, i: number) => ({
   id: w.id, name: w.name, subtitle: w.subtitle, demand: w.demand, sort_order: i,
+  archived: Boolean(w.archived), archive_note: w.archive_note ?? '', updated_at: now,
 })))
 {
   const items: Row[] = []
@@ -138,7 +141,7 @@ await upsertRespectingEdits('workouts', seed.workouts.map((w: Row, i: number) =>
       items.push({
         id: `${w.id}:${it.order}`, workout_id: w.id, order: it.order, exercise_id: it.exercise_id,
         sets: it.sets, rep_range: it.rep_range, rest: it.rest, effort_target: it.effort_target,
-        warmup_sets: it.warmup_sets, position: it.position,
+        warmup_sets: it.warmup_sets, position: it.position, updated_at: now,
       })
     }
   }
@@ -157,11 +160,11 @@ await upsertRespectingEdits('workouts', seed.workouts.map((w: Row, i: number) =>
 await upsertRespectingEdits('metric_definitions', seed.metrics.map((m: Row, i: number) => ({
   key: m.key, label: m.label, category: m.category, input_type: m.input_type, unit: m.unit,
   min: m.min, max: m.max, step: m.step, active: m.active, icon: m.icon, who_logs: m.who_logs,
-  note: m.note ?? '', sort_order: i,
+  note: m.note ?? '', sort_order: i, updated_at: now,
 })), 'key')
 {
   const rows = seed.activity_types.map((a: Row, i: number) => ({
-    key: a.key, label: a.label, distance_unit: a.distance_unit, tracks: a.tracks, icon: a.icon, note: a.note ?? '', sort_order: i,
+    key: a.key, label: a.label, distance_unit: a.distance_unit, tracks: a.tracks, icon: a.icon, note: a.note ?? '', sort_order: i, updated_at: now,
   }))
   const { error } = await sb.from('activity_types').upsert(rows, { onConflict: 'key' })
   fail('activity_types upsert', error)

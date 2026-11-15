@@ -16,7 +16,7 @@ export function History() {
       ) : (
         <ul className="space-y-2">
           {sessions.map((s) => {
-            const w = plan.workouts.find((x) => x.id === s.workout_id)
+            const w = plan.allWorkouts.find((x) => x.id === s.workout_id)
             return (
               <li key={s.id}>
                 <Link to={`/lucas/session/${s.id}`} className="flex min-h-16 items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3">

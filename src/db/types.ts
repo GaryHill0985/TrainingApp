@@ -111,6 +111,8 @@ export interface WorkoutRow {
   subtitle: string
   demand: string
   sort_order: number
+  archived: boolean
+  archive_note: string
   coach_edited_fields: string[]
   updated_at: string
 }

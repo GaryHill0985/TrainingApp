@@ -11,7 +11,10 @@ export interface Plan {
   theme: PlanSeed['theme']
   positions: PlanSeed['positions']
   week: PlanSeed['meta']['week']
+  /** The current plan's workouts, in order. What Lucas trains from. */
   workouts: Workout[]
+  /** Every workout including archived ones from earlier plan versions, for looking up old sessions. */
+  allWorkouts: Workout[]
   exercises: Record<string, Exercise>
   exerciseRows: Record<string, ExerciseRow>
   muscles: Record<string, Muscle>
@@ -26,7 +29,7 @@ function fromSeed(): Plan {
   for (const e of Object.values(seed.exercises)) exerciseRows[e.id] = { ...e, mm_reference: '', coach_edited_fields: [], updated_at: '' }
   return {
     meta: seed.meta, goals: seed.goals, events: seed.events, theme: seed.theme, positions: seed.positions,
-    week: seed.meta.week, workouts: seed.workouts, exercises: seed.exercises, exerciseRows, muscles: seed.muscles,
+    week: seed.meta.week, workouts: seed.workouts.filter((w) => !w.archived), allWorkouts: seed.workouts, exercises: seed.exercises, exerciseRows, muscles: seed.muscles,
     metrics: seed.metrics, activityTypes: seed.activity_types, app: { muscleDepth: 'simple' },
   }
 }
@@ -58,13 +61,14 @@ export function usePlan(): Plan {
         },
       }
     }
-    const workouts: Workout[] = wRows.map((w) => ({
-      id: w.id, name: w.name, subtitle: w.subtitle, demand: w.demand,
+    const allWorkouts: Workout[] = wRows.map((w) => ({
+      id: w.id, name: w.name, subtitle: w.subtitle, demand: w.demand, archived: Boolean(w.archived), archive_note: w.archive_note ?? '',
       items: itemRows
         .filter((i) => i.workout_id === w.id && !i.deleted)
         .sort((a, b) => a.order - b.order)
         .map<WorkoutItem>((i) => ({ order: i.order, exercise_id: i.exercise_id, sets: i.sets, rep_range: i.rep_range, rest: i.rest, effort_target: i.effort_target, warmup_sets: Number(i.warmup_sets), position: i.position })),
     }))
+    const workouts = allWorkouts.filter((w) => !w.archived)
     const muscles: Record<string, Muscle> = Object.fromEntries(mRows.map((m) => [m.id, m]))
     const app = (s.app as Plan['app'] | undefined) ?? { muscleDepth: 'simple' }
     return {
@@ -74,7 +78,7 @@ export function usePlan(): Plan {
       theme: (s.theme as PlanSeed['theme']) ?? seed.theme,
       positions: (s.positions as PlanSeed['positions']) ?? seed.positions,
       week: (s.week as PlanSeed['meta']['week']) ?? seed.meta.week,
-      workouts, exercises, exerciseRows, muscles,
+      workouts, allWorkouts, exercises, exerciseRows, muscles,
       metrics: metricRows.map((m) => ({ ...m, who_logs: m.who_logs as 'trainee' | 'coach' })),
       activityTypes: atRows,
       app,

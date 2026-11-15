@@ -63,7 +63,8 @@ export function LogPanel({ session, item, exercise, sets, allSets, allLogs, sess
     setEditing(null)
     if (!slot.isWarmup) {
       if (restSecs) setRest(restSecs)
-      if (exercise.ask_dad_before_loading && (w ?? 0) > 0) {
+      const prevWeight = lastWeightFor(exercise.id, allSets, session.id)
+      if (exercise.ask_dad_before_loading && (w ?? 0) > 0 && (prevWeight == null || (w ?? 0) > prevWeight)) {
         setGateNotice(true)
         await saveExerciseLog(session.id, exercise.id, { back_extension_weight_flag: true })
       }

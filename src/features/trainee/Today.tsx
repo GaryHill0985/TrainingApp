@@ -18,7 +18,7 @@ export function Today() {
   const suggested = nextWorkoutId(plan, sessions)
   const [picked, setPicked] = useState<string | null>(null)
   const workoutId = inProgress?.workout_id ?? picked ?? suggested
-  const workout = plan.workouts.find((w) => w.id === workoutId) ?? plan.workouts[0]
+  const workout = plan.allWorkouts.find((w) => w.id === workoutId) ?? plan.workouts[0]
   const [starting, setStarting] = useState(false)
 
   async function start() {

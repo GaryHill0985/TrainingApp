@@ -40,7 +40,7 @@ export function thisWeek(sessions: SessionRow[]): { done: number; start: string 
 }
 
 export function completionPercent(plan: Plan, session: SessionRow, sets: SetLogRow[], logs: ExerciseLogRow[]): number {
-  const w = plan.workouts.find((x) => x.id === session.workout_id)
+  const w = plan.allWorkouts.find((x) => x.id === session.workout_id)
   if (!w || w.items.length === 0) return 0
   const done = w.items.filter((it) => exerciseProgress(it, sets, logs).complete).length
   return Math.round((done / w.items.length) * 100)

@@ -17,7 +17,7 @@ export function SessionScreen() {
 
   if (session === undefined) return <Screen title="Session" backTo="/lucas"><p className="text-muted">Loading…</p></Screen>
   if (!session) return <Navigate to="/lucas" replace />
-  const workout = plan.workouts.find((w) => w.id === session.workout_id)
+  const workout = plan.allWorkouts.find((w) => w.id === session.workout_id)
   if (!workout) return <Navigate to="/lucas" replace />
 
   const progress = workout.items.map((it) => exerciseProgress(it, sets, logs))

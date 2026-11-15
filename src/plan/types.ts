@@ -27,6 +27,9 @@ export interface Workout {
   subtitle: string
   demand: string
   items: WorkoutItem[]
+  /** True for workouts kept from a previous plan version: hidden from Lucas, viewable by the coach. */
+  archived?: boolean
+  archive_note?: string
 }
 
 export interface MuscleInvolvement {
@@ -134,6 +137,8 @@ export interface PlanSeed {
     coach: { name: string; notes: string }
     effort_model: string
     progression_model: string
+    /** How a 6-week training block is run (optional, shown to the coach). */
+    block_model?: string
     technique_colours: Record<TechniqueColour, string>
     week: { day: string; workout: string }[]
     safety_rules: string[]

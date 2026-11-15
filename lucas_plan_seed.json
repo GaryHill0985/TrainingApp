@@ -1,7 +1,7 @@
 {
   "meta": {
-    "plan_name": "Lucas's 5-Day Push/Pull Plan",
-    "version": "2.5",
+    "plan_name": "Lucas's 6-Day Push/Pull/Legs Plan",
+    "version": "3.0",
     "mantra": "Technique first. Control second. Weight third.",
     "trainee": {
       "name": "Lucas",
@@ -11,8 +11,8 @@
       "name": "Dad (Gary)",
       "notes": "Views sessions remotely; can set videos/photos and the plan."
     },
-    "effort_model": "Reps in reserve (RIR). Normal working sets leave 2-3 reps in the tank; Build Day leaves 3-4.",
-    "progression_model": "Double progression: add reps to the top of the range at the target RIR with clean technique, THEN add the smallest load increment, then rebuild reps.",
+    "effort_model": "Reps in reserve (RIR). Machine compounds leave 2-3 reps in the tank. Single-muscle (isolation) exercises leave 2, and may move to 'Leave 1-2' from week 3 of a block. The barbell squat leaves 3.",
+    "progression_model": "Double progression: add reps to the top of the range at the target RIR with clean technique, THEN add the smallest load increment, then rebuild reps. Barbell squat: when all three sets reach 8 with green technique, Dad OKs +2.5 kg, then rebuild from 6.",
     "technique_colours": {
       "green": "Every rep controlled",
       "amber": "Small technique problem",
@@ -21,29 +21,35 @@
     "week": [
       {
         "day": "Day 1",
-        "workout": "Push A"
+        "workout": "Push A v3"
       },
       {
         "day": "Day 2",
-        "workout": "Pull A"
+        "workout": "Pull A v3"
       },
       {
         "day": "Day 3",
-        "workout": "Push B"
+        "workout": "Legs A v3"
       },
       {
         "day": "Day 4",
-        "workout": "Pull B"
+        "workout": "Push B v3"
       },
       {
         "day": "Day 5",
-        "workout": "Build Day"
+        "workout": "Pull B v3"
+      },
+      {
+        "day": "Day 6",
+        "workout": "Legs B v3"
       }
     ],
     "safety_rules": [
       "Never train through sharp or joint pain - stop the set and tell Dad.",
       "No free-weight bent-forward lifts (barbell deadlift/good morning). If a machine is busy, use the exercise's 'easier option', never a bent-forward barbell lift.",
-      "Back extension starts bodyweight; a held plate is only added after clean technique + ~3 RIR, and Dad checks first."
+      "Back extension starts bodyweight; a held plate is only added after clean technique + ~3 RIR, and Dad checks first.",
+      "Barbell back squat only in the rack with the safety bars set just below the bottom position. Dad OKs every weight increase, 2.5 kg at a time.",
+      "Belt squat uses Lucas's own belt, snug on the hips. If it is busy, use the leg press."
     ],
     "anatomy_data_note": "The 'muscles' library and each exercise's 'muscle_involvement' are authored from standard anatomy references (e.g. Gray's Anatomy; standard kinesiology texts) as a starter dataset. Treat as coach-verifiable, not clinical. For richer/verified assets see anatomy_sources.",
     "anatomy_sources": [
@@ -72,7 +78,8 @@
       }
     ],
     "do_not_copy": "Do NOT copy, trace, screen-capture or reuse assets or animations from commercial apps such as Muscle & Motion. Build original 2D SVGs or use the openly-licensed sources above with correct attribution.",
-    "muscle_visual_plan": "No in-app muscle diagrams for now (accuracy over having a picture). Companion: Muscle & Motion (coach subscription) used alongside the app for visuals. In-app visuals are deferred to the accurate open-3D route (see meta.anatomy_sources). The muscle text data below (origin/insertion/action/line-of-pull + roles) is still used in-app."
+    "muscle_visual_plan": "No in-app muscle diagrams for now (accuracy over having a picture). Companion: Muscle & Motion (coach subscription) used alongside the app for visuals. In-app visuals are deferred to the accurate open-3D route (see meta.anatomy_sources). The muscle text data below (origin/insertion/action/line-of-pull + roles) is still used in-app.",
+    "block_model": "6-week blocks. Week 1: find weights on new exercises (Leave 4) and keep logged weights elsewhere. Weeks 2-4: add one set per week to back (the pulldowns) and side delts (the lateral raises) only, and only if last session's reps held. Week 5: hold the sets; isolation work at Leave 1. Week 6: half the sets at Leave 3-4. Then start the next block."
   },
   "goals": {
     "vision": {
@@ -89,13 +96,13 @@
         "key": "consistency",
         "label": "Train consistently",
         "type": "habit",
-        "detail": "Aim for most of the 5 sessions most weeks. Showing up is the win."
+        "detail": "Aim for most of the 6 workouts most weeks. Showing up is the win."
       },
       {
         "key": "pullup_ladder",
         "label": "Pull-up ladder",
         "type": "performance",
-        "detail": "Work from assisted pull-ups toward your first bodyweight pull-up, then weighted - ties straight to the athletic look you're after.",
+        "detail": "Pull-ups are tested at the end of each training block, not trained every week. The pulldowns and rows build the strength for your first bodyweight pull-up, then weighted ones - ties straight to the athletic look you're after.",
         "stages": [
           "Assisted",
           "First bodyweight rep",
@@ -108,7 +115,7 @@
         "key": "strength_prs",
         "label": "Get stronger on the big lifts",
         "type": "performance",
-        "detail": "Add reps then weight (double progression) on the presses, rows, leg press and hip thrust. Celebrate every PR."
+        "detail": "Add reps then weight (double progression) on the squat, belt squat, presses, rows, leg press and hip thrust. Celebrate every PR."
       },
       {
         "key": "recovery",
@@ -781,6 +788,424 @@
   },
   "workouts": [
     {
+      "id": "Push A v3",
+      "name": "Push A",
+      "subtitle": "Chest · Shoulders · Triceps · stretched focus",
+      "demand": "Normal training day",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "chest_press",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1.5,
+          "position": "Mid-range"
+        },
+        {
+          "order": 2,
+          "exercise_id": "cable_fly",
+          "sets": 3,
+          "rep_range": "12-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 3,
+          "exercise_id": "shoulder_press",
+          "sets": 2,
+          "rep_range": "8-12",
+          "rest": "90 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Mid-range"
+        },
+        {
+          "order": 4,
+          "exercise_id": "cross_body_lateral",
+          "sets": 3,
+          "rep_range": "12-20",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "overhead_ext",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 6,
+          "exercise_id": "pressdown",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        }
+      ]
+    },
+    {
+      "id": "Pull A v3",
+      "name": "Pull A",
+      "subtitle": "Back · Rear shoulders · Biceps · Trunk",
+      "demand": "Normal training day",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "pulldown",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1.5,
+          "position": "Lengthened"
+        },
+        {
+          "order": 2,
+          "exercise_id": "row",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Mid-range"
+        },
+        {
+          "order": 3,
+          "exercise_id": "reverse_fly",
+          "sets": 2,
+          "rep_range": "12-20",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Mid-range"
+        },
+        {
+          "order": 4,
+          "exercise_id": "behind_body_curl",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "spider_curl",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 6,
+          "exercise_id": "pallof",
+          "sets": 2,
+          "rep_range": "8-12 / side",
+          "rest": "60 sec",
+          "effort_target": "Easy-moderate",
+          "warmup_sets": 0,
+          "position": "Trunk"
+        }
+      ]
+    },
+    {
+      "id": "Legs A v3",
+      "name": "Legs A",
+      "subtitle": "Squat day · Quads · Hamstrings · Glutes · Calves",
+      "demand": "Normal training day · squat first, fresh",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "barbell_squat",
+          "sets": 3,
+          "rep_range": "6-8",
+          "rest": "150-180 sec",
+          "effort_target": "Leave 3",
+          "warmup_sets": 2,
+          "position": "Lengthened"
+        },
+        {
+          "order": 2,
+          "exercise_id": "leg_press",
+          "sets": 2,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Lengthened"
+        },
+        {
+          "order": 3,
+          "exercise_id": "seated_leg_curl",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "90 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 4,
+          "exercise_id": "hip_thrust",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1.5,
+          "position": "Shortened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "calf",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Full-range"
+        },
+        {
+          "order": 6,
+          "exercise_id": "cardio",
+          "sets": 1,
+          "rep_range": "8-12 min",
+          "rest": "—",
+          "effort_target": "Easy",
+          "warmup_sets": 0,
+          "position": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "Push B v3",
+      "name": "Push B",
+      "subtitle": "Chest · Shoulders · Triceps · squeezed focus",
+      "demand": "Normal training day",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "incline_press",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1.5,
+          "position": "Mid-range"
+        },
+        {
+          "order": 2,
+          "exercise_id": "incline_cable_fly",
+          "sets": 3,
+          "rep_range": "12-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 3,
+          "exercise_id": "shoulder_press_neutral",
+          "sets": 2,
+          "rep_range": "8-12",
+          "rest": "90 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Mid-range"
+        },
+        {
+          "order": 4,
+          "exercise_id": "lateral_raise",
+          "sets": 3,
+          "rep_range": "12-20",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "close_grip_press",
+          "sets": 2,
+          "rep_range": "8-12",
+          "rest": "90 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Mid-range"
+        },
+        {
+          "order": 6,
+          "exercise_id": "overhead_ext",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        }
+      ]
+    },
+    {
+      "id": "Pull B v3",
+      "name": "Pull B",
+      "subtitle": "Back · Rear shoulders · Biceps · Trunk",
+      "demand": "Normal training day",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "wide_pulldown",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1.5,
+          "position": "Lengthened"
+        },
+        {
+          "order": 2,
+          "exercise_id": "cable_row_pause",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 1,
+          "position": "Shortened"
+        },
+        {
+          "order": 3,
+          "exercise_id": "y_row",
+          "sets": 2,
+          "rep_range": "12-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 4,
+          "exercise_id": "preacher_curl",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Lengthened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "hammer_curl",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "60 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Mid-range"
+        },
+        {
+          "order": 6,
+          "exercise_id": "side_plank",
+          "sets": 2,
+          "rep_range": "20-30 sec / side",
+          "rest": "60 sec",
+          "effort_target": "Clean hold",
+          "warmup_sets": 0,
+          "position": "Trunk"
+        }
+      ]
+    },
+    {
+      "id": "Legs B v3",
+      "name": "Legs B",
+      "subtitle": "Belt squat day · Quads · Glutes · Hamstrings · Calves · calm finish",
+      "demand": "Normal training day · ends easy",
+      "items": [
+        {
+          "order": 1,
+          "exercise_id": "belt_squat",
+          "sets": 3,
+          "rep_range": "8-12",
+          "rest": "120 sec",
+          "effort_target": "Leave 2-3",
+          "warmup_sets": 2,
+          "position": "Lengthened"
+        },
+        {
+          "order": 2,
+          "exercise_id": "back_extension",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "90 sec",
+          "effort_target": "Leave 2-3 · bodyweight",
+          "warmup_sets": 1,
+          "position": "Lengthened"
+        },
+        {
+          "order": 3,
+          "exercise_id": "lying_leg_curl",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "90 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 4,
+          "exercise_id": "leg_ext",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 5,
+          "exercise_id": "calf_seated",
+          "sets": 3,
+          "rep_range": "10-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Full-range"
+        },
+        {
+          "order": 6,
+          "exercise_id": "carry",
+          "sets": 2,
+          "rep_range": "20-30 m / side",
+          "rest": "60 sec",
+          "effort_target": "Stable",
+          "warmup_sets": 0,
+          "position": "Trunk"
+        },
+        {
+          "order": 7,
+          "exercise_id": "cardio",
+          "sets": 1,
+          "rep_range": "8-12 min",
+          "rest": "—",
+          "effort_target": "Easy",
+          "warmup_sets": 0,
+          "position": "Easy"
+        }
+      ]
+    },
+    {
       "id": "Push A",
       "name": "Push A",
       "subtitle": "Quads · Chest · Shoulders · Triceps",
@@ -846,7 +1271,9 @@
           "warmup_sets": 0,
           "position": "Shortened"
         }
-      ]
+      ],
+      "archived": true,
+      "archive_note": "Plan v2.5 · 5-day push/pull · run 5 Oct to 12 Nov 2026"
     },
     {
       "id": "Pull A",
@@ -924,7 +1351,9 @@
           "warmup_sets": 0,
           "position": "Trunk"
         }
-      ]
+      ],
+      "archived": true,
+      "archive_note": "Plan v2.5 · 5-day push/pull · run 5 Oct to 12 Nov 2026"
     },
     {
       "id": "Push B",
@@ -992,7 +1421,9 @@
           "warmup_sets": 0,
           "position": "Lengthened"
         }
-      ]
+      ],
+      "archived": true,
+      "archive_note": "Plan v2.5 · 5-day push/pull · run 5 Oct to 12 Nov 2026"
     },
     {
       "id": "Pull B",
@@ -1070,7 +1501,9 @@
           "warmup_sets": 0,
           "position": "Trunk"
         }
-      ]
+      ],
+      "archived": true,
+      "archive_note": "Plan v2.5 · 5-day push/pull · run 5 Oct to 12 Nov 2026"
     },
     {
       "id": "Build Day",
@@ -1138,7 +1571,9 @@
           "warmup_sets": 0,
           "position": "Easy"
         }
-      ]
+      ],
+      "archived": true,
+      "archive_note": "Plan v2.5 · 5-day push/pull · run 5 Oct to 12 Nov 2026"
     }
   ],
   "exercises": {
@@ -2992,6 +3427,675 @@
       "muscle_involvement": {
         "prime_movers": [],
         "synergists": [],
+        "stabilisers": []
+      }
+    },
+    "barbell_squat": {
+      "id": "barbell_squat",
+      "name": "Barbell Back Squat (in the rack)",
+      "diagram_key": "squat",
+      "position": "Lengthened",
+      "position_why": "This exercise loads the thighs and glutes hardest deep in the stretched position at the bottom.",
+      "trains": "Thighs (quadriceps), glutes and the muscles that hold your trunk steady. The big lift you asked to work on.",
+      "find_equipment": "A squat rack with a 20 kg barbell, J-hooks to rest the bar on at about shoulder height, and safety bars (spotter arms) that catch the bar if you cannot stand up.",
+      "setup": [
+        "Set the J-hooks so the bar sits just below your shoulders. You should stand up a little to lift it out, not go on tiptoes.",
+        "Set the safety bars just below where the bar is at the bottom of your squat. Check them with the empty bar first.",
+        "Load the same weight on both sides and use collars.",
+        "Warm up: empty bar for 8 reps, then 25 kg for 5, then your working weight.",
+        "Dad agrees every weight increase before it goes on the bar."
+      ],
+      "starting_position": [
+        "Bar: across your upper back, on the shelf made by your shoulder muscles, not on your neck.",
+        "Hands: just outside shoulder width, elbows pointing down.",
+        "Feet: about shoulder width, toes turned out a little.",
+        "Chest: up, eyes forward. Deep breath in and stomach braced before each rep."
+      ],
+      "how_to_rep": [
+        "Take a breath, brace, and sit down between your heels, bending the knees and hips together.",
+        "Lower for about two to three seconds until your thighs are at least level with the floor, keeping your heels down.",
+        "Keep your knees tracking over your feet and your chest up.",
+        "Drive up through your whole foot to stand tall. Breathe out on the way up.",
+        "Reset your breath at the top before the next rep."
+      ],
+      "feel_do": "Effort in the fronts of your thighs and your glutes, and your trunk working to stay tall.",
+      "feel_dont": "You should not feel sharp pain in your knees or lower back, and the bar should never feel like it is tipping you forward.",
+      "common_mistakes": [
+        "Letting the knees cave inwards.",
+        "Heels lifting or weight shifting onto the toes.",
+        "Chest dropping forward so the bar moves over the toes.",
+        "Cutting the depth short as the set gets hard.",
+        "Adding weight before every set is clean."
+      ],
+      "stop_set_when": [
+        "Your back rounds or your chest drops forward.",
+        "Your heels lift or your knees cave in.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Take weight off the bar, or do the belt squat or leg press instead. Never squat without the safety bars set.",
+      "progress_when": "When all three sets reach 8 reps with green technique and about three reps left, ask Dad, then add 2.5 kg (1.25 kg each side) and rebuild your reps from 6.",
+      "video_search_query": "barbell back squat beginner proper form rack safety bars",
+      "video_search_url": "https://www.youtube.com/results?search_query=barbell+back+squat+beginner+proper+form+rack+safety+bars",
+      "video_url": "",
+      "needs_photo": false,
+      "photo_url": "",
+      "ask_dad_before_loading": true,
+      "muscle_involvement": {
+        "prime_movers": [
+          "rectus_femoris",
+          "vastus_lateralis",
+          "vastus_medialis",
+          "vastus_intermedius",
+          "gluteus_maximus"
+        ],
+        "synergists": [
+          "adductor_magnus",
+          "biceps_femoris",
+          "semitendinosus",
+          "semimembranosus"
+        ],
+        "stabilisers": [
+          "erector_spinae",
+          "rectus_abdominis",
+          "external_oblique",
+          "gluteus_medius"
+        ]
+      }
+    },
+    "belt_squat": {
+      "id": "belt_squat",
+      "name": "Belt Squat (your own belt)",
+      "diagram_key": "squat",
+      "position": "Lengthened",
+      "position_why": "This exercise loads the thighs and glutes deep in the stretch, with no weight on your back.",
+      "trains": "Thighs and glutes, through a deep squat. The weight hangs from your hips, so your back carries nothing and you can focus on depth.",
+      "find_equipment": "The belt squat machine or platform: a raised platform you stand on with the weight hanging below you from a belt. Bring your own belt; the gym's one is too big.",
+      "setup": [
+        "Put your belt on snugly around your hips, with the hook or chain at the front.",
+        "Stand on the platform with your feet about shoulder width.",
+        "Attach the chain or lever to your belt and take the weight by standing tall.",
+        "Release the safety handle (or lever) only once you are standing tall and balanced.",
+        "Start light and find the weight in your first session."
+      ],
+      "starting_position": [
+        "Belt: snug on the hips, not the waist.",
+        "Feet: shoulder width, toes turned out slightly, whole foot on the platform.",
+        "Hands: on the handles or rail for balance only, not to pull yourself up.",
+        "Chest: up, eyes forward."
+      ],
+      "how_to_rep": [
+        "Sit down between your heels for about two to three seconds, as deep as you can while keeping your heels down and your back tall.",
+        "Breathe in as you lower.",
+        "Keep your knees tracking over your feet.",
+        "Drive up through your whole foot to stand tall. Breathe out on the way up.",
+        "Do not bounce at the bottom."
+      ],
+      "feel_do": "Effort in the fronts of your thighs and your glutes, with a stretch at the bottom.",
+      "feel_dont": "You should not feel it in your lower back, and the belt should not pinch or slip.",
+      "common_mistakes": [
+        "Pulling yourself up with the handles.",
+        "Heels lifting at the bottom.",
+        "Knees caving inwards.",
+        "Bouncing out of the bottom."
+      ],
+      "stop_set_when": [
+        "Your heels lift or you need the handles to stand up.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight or a slightly smaller range. If the belt squat is busy, use the leg press.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "belt squat machine how to proper form depth",
+      "video_search_url": "https://www.youtube.com/results?search_query=belt+squat+machine+how+to+proper+form+depth",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "rectus_femoris",
+          "vastus_lateralis",
+          "vastus_medialis",
+          "vastus_intermedius",
+          "gluteus_maximus"
+        ],
+        "synergists": [
+          "adductor_magnus",
+          "biceps_femoris",
+          "semitendinosus",
+          "semimembranosus"
+        ],
+        "stabilisers": [
+          "gluteus_medius",
+          "erector_spinae"
+        ]
+      }
+    },
+    "wide_pulldown": {
+      "id": "wide_pulldown",
+      "name": "Wide Overhand Lat Pulldown",
+      "diagram_key": "pulldown",
+      "position": "Lengthened",
+      "position_why": "This exercise loads the back in the full overhead stretch, with a wide grip like a pull-up.",
+      "trains": "The back (the wide muscles under your arms) and biceps. The wide overhand grip is the closest machine to a pull-up.",
+      "find_equipment": "The same pulldown station as your neutral-grip pulldown, with the long straight bar. Hold it wider than your shoulders, palms facing away from you.",
+      "setup": [
+        "Set the thigh pad so your legs are held firmly.",
+        "Hold the long bar wider than shoulder width, palms facing away from you.",
+        "Sit down and let your arms stretch fully overhead.",
+        "Lean back only a small amount."
+      ],
+      "starting_position": [
+        "Hands: wide on the bar, palms facing away, arms straight overhead (feel the stretch).",
+        "Thighs: under the pad.",
+        "Body: tall, leaning back only a little.",
+        "Shoulders: let them stretch up at the start, then pull down to begin."
+      ],
+      "how_to_rep": [
+        "Start by pulling your shoulder blades down, then pull the bar to the top of your chest.",
+        "Breathe out as you pull.",
+        "Bring your elbows down and slightly back. Stop when the bar reaches your upper chest.",
+        "Return for about two to three seconds until your arms are straight and you feel the stretch again.",
+        "Breathe in as you return."
+      ],
+      "feel_do": "Effort in the wide muscles of your back under your arms, and a stretch at the top.",
+      "feel_dont": "You should not feel it mainly in your hands or your lower back.",
+      "common_mistakes": [
+        "Leaning far back and turning it into a row.",
+        "Pulling the bar below the chest with the elbows behind you.",
+        "Shrugging the shoulders up at the top.",
+        "Letting the weight yank your arms up at the top."
+      ],
+      "stop_set_when": [
+        "You have to lean far back or swing to move the bar.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight, or use the neutral-grip handle.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "wide grip lat pulldown proper form beginner",
+      "video_search_url": "https://www.youtube.com/results?search_query=wide+grip+lat+pulldown+proper+form+beginner",
+      "video_url": "",
+      "needs_photo": false,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "latissimus_dorsi"
+        ],
+        "synergists": [
+          "teres_major",
+          "biceps_brachii",
+          "brachialis",
+          "posterior_deltoid",
+          "rhomboids",
+          "trapezius"
+        ],
+        "stabilisers": [
+          "rotator_cuff",
+          "erector_spinae"
+        ]
+      }
+    },
+    "cable_row_pause": {
+      "id": "cable_row_pause",
+      "name": "Seated Cable Row with Pause (squeeze)",
+      "diagram_key": "row",
+      "position": "Shortened",
+      "position_why": "This exercise finishes with a one-second hold, elbows behind you, where the back muscles are fully squeezed.",
+      "trains": "The middle of the back and biceps, finished with a one-second squeeze with your elbows behind you.",
+      "find_equipment": "The seated low cable station with a footrest and a close handle. Use the torso-support pad if the machine has one.",
+      "setup": [
+        "Set the footrest so your knees are soft when you hold the handle with straight arms.",
+        "Choose a weight you can hold still at the end of the pull for a full second.",
+        "Sit tall, chest up."
+      ],
+      "starting_position": [
+        "Feet: on the footrests, knees soft.",
+        "Back: tall and upright.",
+        "Hands: holding the handle, arms straight forward.",
+        "Shoulders: reaching forward a little at the start."
+      ],
+      "how_to_rep": [
+        "Pull the handle to your stomach by driving your elbows back behind you.",
+        "Breathe out as you pull.",
+        "Hold for one full second with your elbows behind you and your shoulder blades squeezed together.",
+        "Return for about two to three seconds until your arms are straight.",
+        "Breathe in as you return. Keep your back tall throughout."
+      ],
+      "feel_do": "A hard squeeze across the middle of your back at the end of each pull.",
+      "feel_dont": "You should not need to rock backwards to finish the pull. If you do, the weight is too heavy for the pause.",
+      "common_mistakes": [
+        "Rocking the body to move the weight.",
+        "Skipping the pause as the set gets hard.",
+        "Shrugging the shoulders up.",
+        "Letting the weight snap your arms forward on the return."
+      ],
+      "stop_set_when": [
+        "You cannot hold the one-second pause with a tall back.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight. Keep the pause; it is the point of the exercise.",
+      "progress_when": "When every set reaches the top of the range with a full one-second hold on every rep and about two reps left, add the smallest increase.",
+      "video_search_query": "seated cable row pause squeeze proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=seated+cable+row+pause+squeeze+proper+form",
+      "video_url": "",
+      "needs_photo": false,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "latissimus_dorsi",
+          "trapezius",
+          "rhomboids"
+        ],
+        "synergists": [
+          "posterior_deltoid",
+          "biceps_brachii",
+          "brachialis",
+          "teres_major"
+        ],
+        "stabilisers": [
+          "erector_spinae",
+          "rotator_cuff"
+        ]
+      }
+    },
+    "y_row": {
+      "id": "y_row",
+      "name": "Cable Y-Row",
+      "diagram_key": "reverse_fly",
+      "position": "Lengthened",
+      "position_why": "This exercise starts with the rear shoulders and upper back stretched forward, then pulls up and out into a Y.",
+      "trains": "The backs of the shoulders, the lower part of the trapezius and the upper back. Good for posture and healthy shoulders.",
+      "find_equipment": "A cable set at about chest height with a rope (or two single handles). You stand back from it with your arms forward, then pull up and out into a Y shape.",
+      "setup": [
+        "Set the pulley at about chest height and attach the rope or two handles.",
+        "Step back until the weight is lifted with your arms straight out in front of you.",
+        "Stand tall with your feet about hip width, knees soft.",
+        "Start light. This is a small-muscle exercise."
+      ],
+      "starting_position": [
+        "Arms: straight out in front, shoulders stretched forward.",
+        "Hands: thumbs pointing up, holding the rope ends.",
+        "Body: tall and still, stomach gently braced.",
+        "Shoulders: down, not shrugged."
+      ],
+      "how_to_rep": [
+        "Pull your hands up and out so your arms finish in a Y shape above shoulder height, thumbs up.",
+        "Breathe out as you pull.",
+        "Squeeze your shoulder blades down and back for a moment at the top.",
+        "Return for about two to three seconds, letting your shoulders stretch forward again.",
+        "Breathe in as you return."
+      ],
+      "feel_do": "Effort in the backs of your shoulders and between your shoulder blades.",
+      "feel_dont": "You should not feel it in your neck or lower back. If your neck takes over, the weight is too heavy.",
+      "common_mistakes": [
+        "Shrugging up towards the ears.",
+        "Using too much weight and swinging.",
+        "Leaning back to help the weight move.",
+        "Bending the elbows and turning it into a row."
+      ],
+      "stop_set_when": [
+        "Your neck or lower back takes over.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight, or do the reverse pec-deck instead.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "cable Y raise rear delt lower trap proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=cable+Y+raise+rear+delt+lower+trap+proper+form",
+      "video_url": "",
+      "needs_photo": false,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "posterior_deltoid",
+          "trapezius"
+        ],
+        "synergists": [
+          "rhomboids",
+          "supraspinatus",
+          "rotator_cuff"
+        ],
+        "stabilisers": [
+          "erector_spinae",
+          "rectus_abdominis"
+        ]
+      }
+    },
+    "preacher_curl": {
+      "id": "preacher_curl",
+      "name": "Preacher Curl Machine",
+      "diagram_key": "curl",
+      "position": "Lengthened",
+      "position_why": "This exercise is hardest near the bottom, where the biceps are stretched over the pad.",
+      "trains": "The fronts of the upper arms (biceps). The pad holds your upper arms still, so the biceps do all the work, and the load is heaviest where they are stretched.",
+      "find_equipment": "A seated machine with an angled pad for the backs of your upper arms and a handle or bar in front. You curl the handle up towards your shoulders.",
+      "setup": [
+        "Set the seat so the top of the pad sits under your armpits.",
+        "Rest the backs of your upper arms flat on the pad.",
+        "Hold the handle with your arms almost straight. Do not lock the elbows hard.",
+        "Start light; the bottom of this exercise feels harder than a normal curl."
+      ],
+      "starting_position": [
+        "Upper arms: flat on the pad, armpits at the top edge.",
+        "Hands: on the handle, wrists straight.",
+        "Arms: almost straight, feeling a stretch in the biceps.",
+        "Body: tall, chest against the pad."
+      ],
+      "how_to_rep": [
+        "Curl the handle up towards your shoulders by bending your elbows.",
+        "Breathe out as you curl up.",
+        "Keep the backs of your upper arms on the pad the whole time.",
+        "Lower for about two to three seconds until your arms are almost straight. Do not snap into a locked elbow.",
+        "Breathe in as you lower."
+      ],
+      "feel_do": "Effort and a stretch in the fronts of your upper arms, strongest near the bottom.",
+      "feel_dont": "You should not feel it in your elbows or the fronts of your shoulders.",
+      "common_mistakes": [
+        "Lifting the upper arms off the pad to help.",
+        "Dropping the weight quickly into a locked elbow at the bottom.",
+        "Stopping short of the stretch at the bottom.",
+        "Leaning back away from the pad."
+      ],
+      "stop_set_when": [
+        "Your upper arms lift off the pad to finish a rep.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight, or do the behind-body cable curl.",
+      "progress_when": "When every set reaches the top of the range with a controlled stretch and about two reps left, add the smallest increase.",
+      "video_search_query": "preacher curl machine proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=preacher+curl+machine+proper+form",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "biceps_brachii"
+        ],
+        "synergists": [
+          "brachialis",
+          "brachioradialis"
+        ],
+        "stabilisers": [
+          "forearm_flexors"
+        ]
+      }
+    },
+    "spider_curl": {
+      "id": "spider_curl",
+      "name": "Dumbbell Spider Curl (chest on incline bench)",
+      "diagram_key": "curl",
+      "position": "Shortened",
+      "position_why": "This exercise is hardest at the top, where the biceps are fully squeezed with the arms hanging in front of you.",
+      "trains": "The fronts of the upper arms (biceps), finished with a strong squeeze at the top. Your chest rests on the bench so your body stays still.",
+      "find_equipment": "An adjustable bench set to about 45 to 60 degrees and two light dumbbells. You lie chest-down on the bench with your arms hanging straight down in front of it.",
+      "setup": [
+        "Set the bench to about 45 to 60 degrees.",
+        "Pick two light dumbbells (start around 6 to 8 kg each).",
+        "Lie chest-down on the bench with your head over the top and your arms hanging straight down.",
+        "Feet on the floor for balance."
+      ],
+      "starting_position": [
+        "Chest: resting on the bench.",
+        "Arms: hanging straight down, palms facing forward.",
+        "Shoulders: relaxed and hanging. Do not shrug.",
+        "Head: looking down at the floor, neck relaxed."
+      ],
+      "how_to_rep": [
+        "Curl both dumbbells up towards your shoulders, keeping your upper arms hanging still.",
+        "Breathe out as you curl up.",
+        "Squeeze hard at the top for a moment.",
+        "Lower for about two to three seconds until your arms are straight.",
+        "Breathe in as you lower."
+      ],
+      "feel_do": "A hard squeeze in the fronts of your upper arms at the top of every rep.",
+      "feel_dont": "You should not feel it in your shoulders or neck. If you do, the dumbbells are too heavy.",
+      "common_mistakes": [
+        "Swinging the upper arms forward to help.",
+        "Using dumbbells that are too heavy and cutting the squeeze short.",
+        "Lifting the chest off the bench.",
+        "Dropping the weights fast."
+      ],
+      "stop_set_when": [
+        "Your upper arms start swinging to lift the weight.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter dumbbells. If the bench is busy, do a machine curl with a one-second squeeze at the top.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "spider curl incline bench dumbbell proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=spider+curl+incline+bench+dumbbell+proper+form",
+      "video_url": "",
+      "needs_photo": false,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "biceps_brachii"
+        ],
+        "synergists": [
+          "brachialis",
+          "brachioradialis"
+        ],
+        "stabilisers": [
+          "forearm_flexors"
+        ]
+      }
+    },
+    "incline_cable_fly": {
+      "id": "incline_cable_fly",
+      "name": "Incline Bench Cable Flye (cross and squeeze)",
+      "diagram_key": "cable_fly",
+      "position": "Shortened",
+      "position_why": "This exercise finishes with your hands crossing and a squeeze, where the chest is fully contracted.",
+      "trains": "The chest, finished in its squeezed position. Lying on the bench between the cables keeps tension on the chest all the way to the top, which dumbbells cannot do.",
+      "find_equipment": "An adjustable bench placed between two low cable pulleys, set to a low incline (about 30 degrees) or flat, with a single handle on each cable.",
+      "setup": [
+        "Put the bench in the middle of the cable station and set it to a low incline or flat.",
+        "Set both pulleys low and attach a handle to each.",
+        "Sit, pick up both handles, then lie back with the handles at chest height and your arms open.",
+        "Start light; the squeeze at the top is the point, not the weight."
+      ],
+      "starting_position": [
+        "Back and head: on the bench, feet flat on the floor.",
+        "Arms: open out to the sides at chest height, a slight bend in the elbows.",
+        "Hands: palms facing in, holding the handles.",
+        "Shoulders: down and back into the bench."
+      ],
+      "how_to_rep": [
+        "Bring your hands together and across each other above your chest in a wide arc.",
+        "Breathe out as you bring them together.",
+        "Squeeze your chest hard for one second at the top with your hands crossed.",
+        "Open back out for about two to three seconds to chest height.",
+        "Breathe in as you open. Keep the slight elbow bend fixed throughout."
+      ],
+      "feel_do": "A hard squeeze through the middle of your chest at the top.",
+      "feel_dont": "You should not feel it mainly in your shoulders or elbows.",
+      "common_mistakes": [
+        "Bending and straightening the elbows and turning it into a press.",
+        "Too much weight, so the hands cannot cross at the top.",
+        "Opening too far and too fast at the bottom.",
+        "Lifting the head or arching the back off the bench."
+      ],
+      "stop_set_when": [
+        "Your hands can no longer cross at the top.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight, or do the standing cable fly or pec-deck.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "incline bench cable fly crossover squeeze proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=incline+bench+cable+fly+crossover+squeeze+proper+form",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "pectoralis_major"
+        ],
+        "synergists": [
+          "anterior_deltoid"
+        ],
+        "stabilisers": [
+          "serratus_anterior",
+          "rotator_cuff",
+          "biceps_brachii"
+        ]
+      }
+    },
+    "close_grip_press": {
+      "id": "close_grip_press",
+      "name": "Close-Grip Machine Chest Press (triceps)",
+      "diagram_key": "chest_press",
+      "position": "Mid-range",
+      "position_why": "This exercise works the triceps through their strong middle range with the elbows tucked.",
+      "trains": "The backs of the upper arms (triceps), with help from the chest and front shoulders. Narrow handles and tucked elbows put the work on the triceps.",
+      "find_equipment": "The seated chest press machine, using the inner (narrow) handles if it has them, or holding the handles with your hands closer together.",
+      "setup": [
+        "Set the seat so the handles sit at the lower part of your chest.",
+        "Use the inner handles, or the narrow grip.",
+        "Use less weight than your normal chest press.",
+        "Pull your shoulder blades gently down and back into the pad."
+      ],
+      "starting_position": [
+        "Back: flat against the pad.",
+        "Feet: flat on the floor.",
+        "Hands: on the narrow handles, wrists straight.",
+        "Elbows: tucked close to your sides, not flared out."
+      ],
+      "how_to_rep": [
+        "Push the handles forward until your arms are almost straight. Do not lock the elbows hard.",
+        "Breathe out as you push.",
+        "Keep your elbows tucked close to your body the whole way.",
+        "Return for about two to three seconds until your hands are back at your chest.",
+        "Breathe in as you return."
+      ],
+      "feel_do": "Effort in the backs of your upper arms, with some in the chest.",
+      "feel_dont": "You should not feel sharp pain in your elbows or wrists.",
+      "common_mistakes": [
+        "Elbows drifting out wide, which turns it back into a chest press.",
+        "Locking the elbows hard at the top.",
+        "Shoulders rolling forward off the pad.",
+        "Using your full chest press weight."
+      ],
+      "stop_set_when": [
+        "Your elbows flare out wide to finish a rep.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight. If the machine has no narrow grip, use a seated triceps extension machine if the gym has one, or do extra rope pressdowns.",
+      "progress_when": "When every set reaches the top of the range with control and about two reps left, add the smallest increase.",
+      "video_search_query": "close grip machine chest press triceps proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=close+grip+machine+chest+press+triceps+proper+form",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "triceps_brachii"
+        ],
+        "synergists": [
+          "pectoralis_major",
+          "anterior_deltoid"
+        ],
+        "stabilisers": [
+          "serratus_anterior",
+          "rotator_cuff"
+        ]
+      }
+    },
+    "calf_seated": {
+      "id": "calf_seated",
+      "name": "Seated Calf Raise Machine",
+      "diagram_key": "calf",
+      "position": "Full-range",
+      "position_why": "This exercise goes from a deep stretch at the bottom to a full squeeze at the top, with bent knees to work the deeper calf muscle.",
+      "trains": "The calves, especially the deeper calf muscle (soleus) that works when the knee is bent. Through the full range, from a deep stretch to a full squeeze.",
+      "find_equipment": "A seated machine with pads that sit on your thighs just above the knees, and a raised platform for the balls of your feet.",
+      "setup": [
+        "Sit with the balls of your feet on the edge of the platform and the pads snug on your thighs.",
+        "Release the safety handle.",
+        "Start light; calves respond to full range and control, not heavy weight."
+      ],
+      "starting_position": [
+        "Feet: balls of the feet on the edge, heels lowered.",
+        "Knees: bent at about 90 degrees under the pads.",
+        "Body: tall and still.",
+        "Hands: on the handles for balance."
+      ],
+      "how_to_rep": [
+        "Lower your heels below the platform for a deep stretch, for about two seconds.",
+        "Then push up onto the balls of your feet as high as you can.",
+        "Breathe out as you rise.",
+        "Pause and squeeze at the top for a moment.",
+        "Lower for about two to three seconds back into the stretch."
+      ],
+      "feel_do": "A stretch at the bottom and a strong squeeze in your calves at the top.",
+      "feel_dont": "You should not feel it in your knees or the fronts of your shins.",
+      "common_mistakes": [
+        "Bouncing out of the bottom.",
+        "Short, fast reps that skip the stretch or the squeeze.",
+        "Too much weight."
+      ],
+      "stop_set_when": [
+        "You start bouncing out of the bottom.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight, or do your standing calf raise instead.",
+      "progress_when": "When every set reaches the top of the range with full control and about two to three reps left, add the smallest increase.",
+      "video_search_query": "seated calf raise machine proper form full range",
+      "video_search_url": "https://www.youtube.com/results?search_query=seated+calf+raise+machine+proper+form+full+range",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "soleus"
+        ],
+        "synergists": [
+          "gastrocnemius"
+        ],
         "stabilisers": []
       }
     }

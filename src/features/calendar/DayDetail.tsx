@@ -30,7 +30,7 @@ export function DayDetail({ role }: { role: 'trainee' | 'coach' }) {
         <Link key={s.id} to={sessionLink(s.id)} className="block">
           <Card tone="accent">
             <p className="text-sm font-bold uppercase tracking-wide text-muted">Gym session</p>
-            <p className="text-xl font-extrabold">{plan.workouts.find((w) => w.id === s.workout_id)?.name}</p>
+            <p className="text-xl font-extrabold">{plan.allWorkouts.find((w) => w.id === s.workout_id)?.name}</p>
             <p className="text-muted">{s.status === 'complete' ? `${completionPercent(plan, s, sets.filter((x) => x.session_id === s.id), logs.filter((l) => l.session_id === s.id))}% complete` : 'In progress'} · tap to see every set</p>
           </Card>
         </Link>

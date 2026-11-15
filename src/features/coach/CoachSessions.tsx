@@ -27,7 +27,7 @@ export function CoachSessions() {
                 <Link to={`/coach/sessions/${s.id}`} className="flex min-h-16 items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3">
                   <span className="min-w-0">
                     <span className="block text-sm font-semibold text-muted">{formatShort(s.date)} · {s.status === 'complete' ? `${pct}% complete` : 'In progress'}</span>
-                    <span className="block text-xl font-extrabold">{plan.workouts.find((w) => w.id === s.workout_id)?.name ?? s.workout_id}</span>
+                    <span className="block text-xl font-extrabold">{plan.allWorkouts.find((w) => w.id === s.workout_id)?.name ?? s.workout_id}</span>
                     <span className="mt-1 flex gap-2 text-sm font-semibold">
                       {pain && <span className="rounded-full bg-danger/20 px-2 py-0.5 text-danger">Pain</span>}
                       {red && <span className="rounded-full bg-danger/20 px-2 py-0.5 text-danger">Red</span>}

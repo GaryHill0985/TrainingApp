@@ -20,7 +20,7 @@ export function CoachSessionDetail() {
   const logs = useSessionLogs(sessionId)
   if (session === undefined) return <Screen title="Session" backTo="/coach/sessions"><p className="text-muted">Loading…</p></Screen>
   if (!session) return <Navigate to="/coach/sessions" replace />
-  const workout = plan.workouts.find((w) => w.id === session.workout_id)
+  const workout = plan.allWorkouts.find((w) => w.id === session.workout_id)
 
   return (
     <Screen title={workout?.name ?? session.workout_id} backTo="/coach/sessions" backLabel="Sessions">
@@ -58,7 +58,7 @@ export function CoachSessionDetail() {
                   <div className="mt-3 space-y-1">
                     {log.technique_colour && <p className={`font-semibold ${colourText[log.technique_colour]}`}>{colourDot[log.technique_colour]} {plan.meta.technique_colours[log.technique_colour]}</p>}
                     {log.pain_flag && <p className="font-bold text-danger">Something hurt</p>}
-                    {log.back_extension_weight_flag && <p className="font-bold text-warn">Weight was added on this exercise. Check with Lucas.</p>}
+                    {log.back_extension_weight_flag && <p className="font-bold text-warn">Weight was added or increased on this exercise. Check with Lucas.</p>}
                     {log.note && <p>“{log.note}”</p>}
                   </div>
                 )}
