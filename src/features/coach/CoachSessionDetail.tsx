@@ -6,6 +6,7 @@ import { usePlan } from '../../plan/usePlan'
 import { useSession, useSessionLogs, useSessionSets } from '../trainee/data'
 import { formatLong, formatTime } from '../../lib/dates'
 import { logSpecFor } from '../../plan/logType'
+import { resolveItem } from '../trainee/logic'
 import type { TechniqueColour } from '../../plan/types'
 
 const colourText: Record<TechniqueColour, string> = { green: 'text-ok', amber: 'text-warn', red: 'text-danger' }
@@ -29,16 +30,18 @@ export function CoachSessionDetail() {
 
       <ol className="mt-4 space-y-3">
         {(workout?.items ?? []).map((it, i) => {
-          const ex = plan.exercises[it.exercise_id]
-          const spec = logSpecFor(it)
-          const mine = sets.filter((s) => s.exercise_id === it.exercise_id).sort((a, b) => Number(b.is_warmup) - Number(a.is_warmup) || a.set_number - b.set_number || (a.side ?? '').localeCompare(b.side ?? ''))
-          const log = logs.find((l) => l.exercise_id === it.exercise_id)
+          const { item: eff, swappedFrom } = resolveItem(it, logs)
+          const ex = plan.exercises[eff.exercise_id]
+          const spec = logSpecFor(eff)
+          const mine = sets.filter((s) => s.exercise_id === eff.exercise_id).sort((a, b) => Number(b.is_warmup) - Number(a.is_warmup) || a.set_number - b.set_number || (a.side ?? '').localeCompare(b.side ?? ''))
+          const log = logs.find((l) => l.exercise_id === eff.exercise_id)
           const flagged = log?.pain_flag || log?.technique_colour === 'red' || log?.back_extension_weight_flag
           return (
             <li key={it.order}>
               <Card tone={flagged ? 'danger' : 'default'}>
                 <p className="text-sm font-semibold text-muted">Exercise {i + 1} of {workout?.items.length}</p>
-                <p className="text-xl font-extrabold">{ex?.name ?? it.exercise_id}</p>
+                <p className="text-xl font-extrabold">{ex?.name ?? eff.exercise_id}</p>
+                {swappedFrom && <p className="text-muted">Swapped in for {plan.exercises[swappedFrom]?.name ?? swappedFrom} (machine busy)</p>}
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-muted"><PositionChip position={it.position} technical size="sm" /><span>{it.sets} × {it.rep_range} · {it.effort_target}</span></div>
                 {mine.length === 0 ? <p className="mt-2 text-muted">Not logged.</p> : (
                   <table className="mt-3 w-full text-left">

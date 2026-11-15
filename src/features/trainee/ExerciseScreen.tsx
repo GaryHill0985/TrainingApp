@@ -9,7 +9,8 @@ import { BulletList } from '../../ui/BulletList'
 import { SyncBadge } from '../../sync/SyncBadge'
 import { usePlan } from '../../plan/usePlan'
 import { useAllLogs, useAllSets, useSession, useSessionLogs, useSessionSets, useSessions, saveExerciseLog } from './data'
-import { exerciseProgress } from './logic'
+import { exerciseProgress, resolveItem } from './logic'
+import { SwapExercise } from './SwapExercise'
 import { DemoVideo, MachinePhoto } from './Media'
 import { MuscleView } from './MuscleView'
 import { LogPanel } from './LogPanel'
@@ -31,7 +32,9 @@ export function ExerciseScreen() {
 
   const workout = session ? plan.allWorkouts.find((w) => w.id === session.workout_id) : undefined
   const idx = workout ? workout.items.findIndex((i) => String(i.order) === order) : -1
-  const item = workout && idx >= 0 ? workout.items[idx] : undefined
+  const planned = workout && idx >= 0 ? workout.items[idx] : undefined
+  // If the planned machine was busy and Lucas chose a replacement, everything below works on the replacement.
+  const item = planned ? resolveItem(planned, logs).item : undefined
   const exercise = item ? plan.exercises[item.exercise_id] : undefined
   // Sections open on the first visit to an exercise, collapsed after that. Resolved once the exercise is known.
   const [firstTime, setFirstTime] = useState<boolean | null>(null)
@@ -42,7 +45,7 @@ export function ExerciseScreen() {
   const progress = useMemo(() => (item ? exerciseProgress(item, sets, logs) : null), [item, sets, logs])
 
   if (session === undefined) return <Screen title="Exercise" backTo="/lucas"><p className="text-muted">Loading…</p></Screen>
-  if (!session || !workout || !item || !exercise || !progress) return <Navigate to={sessionId ? `/lucas/session/${sessionId}` : '/lucas'} replace />
+  if (!session || !workout || !planned || !item || !exercise || !progress) return <Navigate to={sessionId ? `/lucas/session/${sessionId}` : '/lucas'} replace />
 
   const total = workout.items.length
   const next = workout.items[idx + 1]
@@ -71,6 +74,8 @@ export function ExerciseScreen() {
       </div>
       <p className="mt-2 text-muted">{exercise.position_why}</p>
       <p className="mt-1 text-muted">Effort: {item.effort_target}</p>
+
+      {!readOnly && <SwapExercise session={session} planned={planned} current={exercise} canChange={!sets.some((s) => s.exercise_id === exercise.id && !s.deleted)} />}
 
       <section className="mt-5 rounded-card border border-line bg-surface p-4" id="log">
         <h3 className="text-xl font-extrabold">Log your sets</h3>

@@ -61,6 +61,8 @@ export interface Exercise {
   needs_photo: boolean
   photo_url: string
   ask_dad_before_loading: boolean
+  /** Exercise ids Lucas may swap in when the machine is busy: same muscle group. */
+  alternatives: string[]
   muscle_involvement: MuscleInvolvement
   /** Coach-set: name to search in Muscle & Motion, or a deep link. */
   mm_reference?: string

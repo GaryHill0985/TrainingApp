@@ -39,6 +39,8 @@ export interface ExerciseLogRow extends SyncedRow {
   pain_flag: boolean
   note: string
   back_extension_weight_flag: boolean
+  /** Set on the planned exercise's row when Lucas swapped it for one of its alternatives this session. */
+  swapped_to: string | null
 }
 
 export interface MetricLogRow extends SyncedRow {
@@ -100,6 +102,7 @@ export interface ExerciseRow {
   needs_photo: boolean
   photo_url: string
   ask_dad_before_loading: boolean
+  alternatives: string[]
   mm_reference: string
   coach_edited_fields: string[]
   updated_at: string

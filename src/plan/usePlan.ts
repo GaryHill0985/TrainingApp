@@ -54,6 +54,7 @@ export function usePlan(): Plan {
       exerciseRows[r.id] = r
       exercises[r.id] = {
         ...r,
+        alternatives: r.alternatives ?? [],
         muscle_involvement: {
           prime_movers: emRows.filter((m) => m.exercise_id === r.id && m.role === 'prime').map((m) => m.muscle_id),
           synergists: emRows.filter((m) => m.exercise_id === r.id && m.role === 'synergist').map((m) => m.muscle_id),

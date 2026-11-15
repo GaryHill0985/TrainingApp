@@ -6,7 +6,7 @@ import { PositionChip } from '../../ui/PositionChip'
 import { SyncBadge } from '../../sync/SyncBadge'
 import { usePlan } from '../../plan/usePlan'
 import { useSession, useSessionLogs, useSessionSets } from './data'
-import { exerciseProgress } from './logic'
+import { exerciseProgress, resolveItem } from './logic'
 
 export function SessionScreen() {
   const { sessionId } = useParams()
@@ -45,7 +45,8 @@ export function SessionScreen() {
 
       <ol className="mt-4 space-y-3">
         {workout.items.map((it, i) => {
-          const ex = plan.exercises[it.exercise_id]
+          const { item: eff, swappedFrom } = resolveItem(it, logs)
+          const ex = plan.exercises[eff.exercise_id]
           const p = progress[i]
           const started = p.workingDone > 0 && !p.complete
           return (
@@ -59,7 +60,8 @@ export function SessionScreen() {
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm font-semibold text-muted">Exercise {i + 1} of {total}{p.complete ? ' · Done' : started ? ` · ${p.workingDone} of ${it.sets} sets` : ''}</span>
-                  <span className="block text-xl font-extrabold leading-tight">{ex?.name ?? it.exercise_id}</span>
+                  <span className="block text-xl font-extrabold leading-tight">{ex?.name ?? eff.exercise_id}</span>
+                  {swappedFrom && <span className="block text-sm text-muted">Swapped in for {plan.exercises[swappedFrom]?.name ?? swappedFrom}</span>}
                   <span className="mt-1 flex flex-wrap items-center gap-2">
                     <PositionChip position={it.position} size="sm" />
                     <span className="text-muted">{it.sets} × {it.rep_range}</span>

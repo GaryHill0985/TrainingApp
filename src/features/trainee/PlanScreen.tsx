@@ -94,6 +94,23 @@ export function TraineeExerciseInfo() {
         <p className="mt-1">{exercise.trains}</p>
       </section>
 
+      {exercise.alternatives.length > 0 && (
+        <section className="mt-6">
+          <h3 className="text-lg font-bold">If the machine is busy</h3>
+          <p className="text-muted">In a session you can swap to one of these. They work the same muscles.</p>
+          <ul className="mt-2 space-y-2">
+            {exercise.alternatives.map((id) => plan.exercises[id]).filter(Boolean).map((alt) => (
+              <li key={alt.id}>
+                <Link to={`/lucas/plan/exercise/${alt.id}`} className="flex min-h-14 items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3">
+                  <span className="min-w-0"><span className="block font-bold">{alt.name}</span><span className="mt-1 block"><PositionChip position={alt.position} size="sm" /></span></span>
+                  <Icon name="chevron" className="size-6 shrink-0 text-muted" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <DemoVideo exercise={exercise} />
       <MachinePhoto exercise={exercise} />
 

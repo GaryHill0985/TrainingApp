@@ -71,11 +71,11 @@ export async function removeSet(id: string) {
   if (row) await putRow('set_logs', { ...row, deleted: true })
 }
 
-export async function saveExerciseLog(sessionId: string, exerciseId: string, patch: Partial<Pick<ExerciseLogRow, 'technique_colour' | 'pain_flag' | 'note' | 'back_extension_weight_flag'>>): Promise<ExerciseLogRow> {
+export async function saveExerciseLog(sessionId: string, exerciseId: string, patch: Partial<Pick<ExerciseLogRow, 'technique_colour' | 'pain_flag' | 'note' | 'back_extension_weight_flag' | 'swapped_to'>>): Promise<ExerciseLogRow> {
   const existing = await db.exercise_logs.where({ session_id: sessionId, exercise_id: exerciseId }).first()
   const now = new Date().toISOString()
   const row: ExerciseLogRow = existing
     ? { ...existing, ...patch, updated_at: now }
-    : { id: newId(), user_id: uid(), session_id: sessionId, exercise_id: exerciseId, technique_colour: null, pain_flag: false, note: '', back_extension_weight_flag: false, deleted: false, updated_at: now, ...patch }
+    : { id: newId(), user_id: uid(), session_id: sessionId, exercise_id: exerciseId, technique_colour: null, pain_flag: false, note: '', back_extension_weight_flag: false, swapped_to: null, deleted: false, updated_at: now, ...patch }
   return putRow('exercise_logs', row)
 }

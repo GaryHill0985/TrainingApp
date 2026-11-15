@@ -1,7 +1,7 @@
 {
   "meta": {
     "plan_name": "Lucas's 6-Day Push/Pull/Legs Plan",
-    "version": "3.0",
+    "version": "3.1",
     "mantra": "Technique first. Control second. Weight third.",
     "trainee": {
       "name": "Lucas",
@@ -12,7 +12,7 @@
       "notes": "Views sessions remotely; can set videos/photos and the plan."
     },
     "effort_model": "Reps in reserve (RIR). Machine compounds leave 2-3 reps in the tank. Single-muscle (isolation) exercises leave 2, and may move to 'Leave 1-2' from week 3 of a block. The barbell squat leaves 3.",
-    "progression_model": "Double progression: add reps to the top of the range at the target RIR with clean technique, THEN add the smallest load increment, then rebuild reps. Barbell squat: when all three sets reach 8 with green technique, Dad OKs +2.5 kg, then rebuild from 6.",
+    "progression_model": "Double progression: add reps to the top of the range at the target RIR with clean technique, THEN add the smallest load increment, then rebuild reps. The barbell squat is skill practice this phase: light weight, no progression, every rep the same.",
     "technique_colours": {
       "green": "Every rep controlled",
       "amber": "Small technique problem",
@@ -48,8 +48,9 @@
       "Never train through sharp or joint pain - stop the set and tell Dad.",
       "No free-weight bent-forward lifts (barbell deadlift/good morning). If a machine is busy, use the exercise's 'easier option', never a bent-forward barbell lift.",
       "Back extension starts bodyweight; a held plate is only added after clean technique + ~3 RIR, and Dad checks first.",
-      "Barbell back squat only in the rack with the safety bars set just below the bottom position. Dad OKs every weight increase, 2.5 kg at a time.",
-      "Belt squat uses Lucas's own belt, snug on the hips. If it is busy, use the leg press."
+      "Barbell squat is practice only this phase: the empty bar or 30 kg at most, in the rack with the safety bars set. Dad agrees any change to the weight.",
+      "Belt squat uses Lucas's own belt, snug on the hips. If it is busy, use the leg press.",
+      "If a machine is busy, use the exercise's 'Choose another exercise' list in the app. Every option works the same muscles."
     ],
     "anatomy_data_note": "The 'muscles' library and each exercise's 'muscle_involvement' are authored from standard anatomy references (e.g. Gray's Anatomy; standard kinesiology texts) as a starter dataset. Treat as coach-verifiable, not clinical. For richer/verified assets see anatomy_sources.",
     "anatomy_sources": [
@@ -115,7 +116,7 @@
         "key": "strength_prs",
         "label": "Get stronger on the big lifts",
         "type": "performance",
-        "detail": "Add reps then weight (double progression) on the squat, belt squat, presses, rows, leg press and hip thrust. Celebrate every PR."
+        "detail": "Add reps then weight (double progression) on the belt squat, leg press, presses, rows and hip thrust. The barbell squat is practice, not a PR lift, this phase. Celebrate every PR."
       },
       {
         "key": "recovery",
@@ -926,31 +927,41 @@
     {
       "id": "Legs A v3",
       "name": "Legs A",
-      "subtitle": "Squat day · Quads · Hamstrings · Glutes · Calves",
-      "demand": "Normal training day · squat first, fresh",
+      "subtitle": "Squat practice · Quads · Hamstrings · Glutes · Calves",
+      "demand": "Normal training day · squat practice first, light",
       "items": [
         {
           "order": 1,
           "exercise_id": "barbell_squat",
-          "sets": 3,
-          "rep_range": "6-8",
-          "rest": "150-180 sec",
-          "effort_target": "Leave 3",
-          "warmup_sets": 2,
+          "sets": 2,
+          "rep_range": "5",
+          "rest": "120 sec",
+          "effort_target": "Practice · light",
+          "warmup_sets": 1,
           "position": "Lengthened"
         },
         {
           "order": 2,
           "exercise_id": "leg_press",
-          "sets": 2,
+          "sets": 3,
           "rep_range": "8-12",
           "rest": "120 sec",
           "effort_target": "Leave 2-3",
-          "warmup_sets": 1,
+          "warmup_sets": 1.5,
           "position": "Lengthened"
         },
         {
           "order": 3,
+          "exercise_id": "leg_ext",
+          "sets": 2,
+          "rep_range": "10-15",
+          "rest": "75 sec",
+          "effort_target": "Leave 2",
+          "warmup_sets": 0,
+          "position": "Shortened"
+        },
+        {
+          "order": 4,
           "exercise_id": "seated_leg_curl",
           "sets": 3,
           "rep_range": "10-15",
@@ -960,7 +971,7 @@
           "position": "Lengthened"
         },
         {
-          "order": 4,
+          "order": 5,
           "exercise_id": "hip_thrust",
           "sets": 3,
           "rep_range": "8-12",
@@ -970,7 +981,7 @@
           "position": "Shortened"
         },
         {
-          "order": 5,
+          "order": 6,
           "exercise_id": "calf",
           "sets": 3,
           "rep_range": "10-15",
@@ -980,7 +991,7 @@
           "position": "Full-range"
         },
         {
-          "order": 6,
+          "order": 7,
           "exercise_id": "cardio",
           "sets": 1,
           "rep_range": "8-12 min",
@@ -1145,23 +1156,23 @@
         },
         {
           "order": 2,
-          "exercise_id": "back_extension",
+          "exercise_id": "cable_pull_through",
           "sets": 3,
           "rep_range": "10-15",
           "rest": "90 sec",
-          "effort_target": "Leave 2-3 · bodyweight",
+          "effort_target": "Leave 2-3",
           "warmup_sets": 1,
           "position": "Lengthened"
         },
         {
           "order": 3,
-          "exercise_id": "lying_leg_curl",
+          "exercise_id": "seated_leg_curl",
           "sets": 3,
           "rep_range": "10-15",
           "rest": "90 sec",
           "effort_target": "Leave 2",
           "warmup_sets": 0,
-          "position": "Shortened"
+          "position": "Lengthened"
         },
         {
           "order": 4,
@@ -1647,7 +1658,11 @@
           "erector_spinae",
           "gluteus_medius"
         ]
-      }
+      },
+      "alternatives": [
+        "hack_squat",
+        "belt_squat"
+      ]
     },
     "chest_press": {
       "id": "chest_press",
@@ -1711,7 +1726,11 @@
           "serratus_anterior",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "incline_press",
+        "cable_fly"
+      ]
     },
     "shoulder_press": {
       "id": "shoulder_press",
@@ -1777,7 +1796,11 @@
           "serratus_anterior",
           "supraspinatus"
         ]
-      }
+      },
+      "alternatives": [
+        "shoulder_press_neutral",
+        "lateral_raise"
+      ]
     },
     "shoulder_press_neutral": {
       "id": "shoulder_press_neutral",
@@ -1843,7 +1866,11 @@
           "serratus_anterior",
           "supraspinatus"
         ]
-      }
+      },
+      "alternatives": [
+        "shoulder_press",
+        "lateral_raise"
+      ]
     },
     "leg_ext": {
       "id": "leg_ext",
@@ -1904,7 +1931,11 @@
         ],
         "synergists": [],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "leg_press",
+        "hack_squat"
+      ]
     },
     "lateral_raise": {
       "id": "lateral_raise",
@@ -1967,7 +1998,10 @@
           "trapezius",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "cross_body_lateral"
+      ]
     },
     "cross_body_lateral": {
       "id": "cross_body_lateral",
@@ -2031,7 +2065,10 @@
           "trapezius",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "lateral_raise"
+      ]
     },
     "pressdown": {
       "id": "pressdown",
@@ -2091,7 +2128,11 @@
         "stabilisers": [
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "overhead_ext",
+        "close_grip_press"
+      ]
     },
     "overhead_ext": {
       "id": "overhead_ext",
@@ -2153,7 +2194,11 @@
           "rectus_abdominis",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "pressdown",
+        "close_grip_press"
+      ]
     },
     "hip_thrust": {
       "id": "hip_thrust",
@@ -2220,7 +2265,11 @@
           "rectus_femoris",
           "rectus_abdominis"
         ]
-      }
+      },
+      "alternatives": [
+        "cable_pull_through",
+        "back_extension"
+      ]
     },
     "back_extension": {
       "id": "back_extension",
@@ -2286,7 +2335,11 @@
         "stabilisers": [
           "adductor_magnus"
         ]
-      }
+      },
+      "alternatives": [
+        "cable_pull_through",
+        "hip_thrust"
+      ]
     },
     "pulldown": {
       "id": "pulldown",
@@ -2355,7 +2408,11 @@
           "rotator_cuff",
           "erector_spinae"
         ]
-      }
+      },
+      "alternatives": [
+        "wide_pulldown",
+        "assisted_pullup"
+      ]
     },
     "assisted_pullup": {
       "id": "assisted_pullup",
@@ -2422,7 +2479,11 @@
           "rotator_cuff",
           "rectus_abdominis"
         ]
-      }
+      },
+      "alternatives": [
+        "pulldown",
+        "wide_pulldown"
+      ]
     },
     "row": {
       "id": "row",
@@ -2490,7 +2551,11 @@
           "erector_spinae",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "cable_row",
+        "cable_row_pause"
+      ]
     },
     "cable_row": {
       "id": "cable_row",
@@ -2558,7 +2623,11 @@
           "erector_spinae",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "row",
+        "cable_row_pause"
+      ]
     },
     "seated_leg_curl": {
       "id": "seated_leg_curl",
@@ -2621,7 +2690,11 @@
           "gastrocnemius"
         ],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "lying_leg_curl",
+        "cable_pull_through"
+      ]
     },
     "lying_leg_curl": {
       "id": "lying_leg_curl",
@@ -2684,7 +2757,11 @@
           "gastrocnemius"
         ],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "seated_leg_curl",
+        "cable_pull_through"
+      ]
     },
     "reverse_fly": {
       "id": "reverse_fly",
@@ -2746,7 +2823,10 @@
           "rotator_cuff"
         ],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "y_row"
+      ]
     },
     "behind_body_curl": {
       "id": "behind_body_curl",
@@ -2810,7 +2890,11 @@
           "anterior_deltoid",
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "preacher_curl",
+        "curl"
+      ]
     },
     "curl": {
       "id": "curl",
@@ -2873,7 +2957,11 @@
         "stabilisers": [
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "spider_curl",
+        "behind_body_curl"
+      ]
     },
     "hammer_curl": {
       "id": "hammer_curl",
@@ -2936,7 +3024,11 @@
         "stabilisers": [
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "curl",
+        "spider_curl"
+      ]
     },
     "hack_squat": {
       "id": "hack_squat",
@@ -3007,7 +3099,11 @@
           "erector_spinae",
           "gluteus_medius"
         ]
-      }
+      },
+      "alternatives": [
+        "leg_press",
+        "belt_squat"
+      ]
     },
     "incline_press": {
       "id": "incline_press",
@@ -3071,7 +3167,11 @@
           "serratus_anterior",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "chest_press",
+        "incline_cable_fly"
+      ]
     },
     "cable_fly": {
       "id": "cable_fly",
@@ -3134,7 +3234,11 @@
           "rotator_cuff",
           "biceps_brachii"
         ]
-      }
+      },
+      "alternatives": [
+        "incline_cable_fly",
+        "chest_press"
+      ]
     },
     "pallof": {
       "id": "pallof",
@@ -3199,7 +3303,10 @@
           "gluteus_medius",
           "erector_spinae"
         ]
-      }
+      },
+      "alternatives": [
+        "side_plank"
+      ]
     },
     "side_plank": {
       "id": "side_plank",
@@ -3261,7 +3368,10 @@
           "gluteus_medius",
           "lateral_deltoid"
         ]
-      }
+      },
+      "alternatives": [
+        "pallof"
+      ]
     },
     "calf": {
       "id": "calf",
@@ -3320,7 +3430,10 @@
         ],
         "synergists": [],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "calf_seated"
+      ]
     },
     "carry": {
       "id": "carry",
@@ -3382,7 +3495,11 @@
           "erector_spinae",
           "transverse_abdominis"
         ]
-      }
+      },
+      "alternatives": [
+        "side_plank",
+        "pallof"
+      ]
     },
     "cardio": {
       "id": "cardio",
@@ -3428,22 +3545,23 @@
         "prime_movers": [],
         "synergists": [],
         "stabilisers": []
-      }
+      },
+      "alternatives": []
     },
     "barbell_squat": {
       "id": "barbell_squat",
-      "name": "Barbell Back Squat (in the rack)",
+      "name": "Barbell Back Squat (practice, in the rack)",
       "diagram_key": "squat",
       "position": "Lengthened",
-      "position_why": "This exercise loads the thighs and glutes hardest deep in the stretched position at the bottom.",
-      "trains": "Thighs (quadriceps), glutes and the muscles that hold your trunk steady. The big lift you asked to work on.",
+      "position_why": "This exercise is squat practice: light weight, perfect reps, deep into the stretched position at the bottom.",
+      "trains": "The skill of squatting: thighs, glutes and a steady trunk. In this phase the weight stays light so every rep can be perfect. The leg press and belt squat do the heavy work.",
       "find_equipment": "A squat rack with a 20 kg barbell, J-hooks to rest the bar on at about shoulder height, and safety bars (spotter arms) that catch the bar if you cannot stand up.",
       "setup": [
         "Set the J-hooks so the bar sits just below your shoulders. You should stand up a little to lift it out, not go on tiptoes.",
         "Set the safety bars just below where the bar is at the bottom of your squat. Check them with the empty bar first.",
+        "Use the empty 20 kg bar, or 30 kg at most. This is practice, not a lift to load.",
         "Load the same weight on both sides and use collars.",
-        "Warm up: empty bar for 8 reps, then 25 kg for 5, then your working weight.",
-        "Dad agrees every weight increase before it goes on the bar."
+        "Dad agrees any change to the weight before it goes on the bar."
       ],
       "starting_position": [
         "Bar: across your upper back, on the shelf made by your shoulder muscles, not on your neck.",
@@ -3465,7 +3583,7 @@
         "Heels lifting or weight shifting onto the toes.",
         "Chest dropping forward so the bar moves over the toes.",
         "Cutting the depth short as the set gets hard.",
-        "Adding weight before every set is clean."
+        "Adding weight. This is a practice exercise in this phase."
       ],
       "stop_set_when": [
         "Your back rounds or your chest drops forward.",
@@ -3476,8 +3594,8 @@
         "Fewer than two clean reps look likely.",
         "You feel sharp pain, joint pain or anything unusual."
       ],
-      "easier_option": "Take weight off the bar, or do the belt squat or leg press instead. Never squat without the safety bars set.",
-      "progress_when": "When all three sets reach 8 reps with green technique and about three reps left, ask Dad, then add 2.5 kg (1.25 kg each side) and rebuild your reps from 6.",
+      "easier_option": "Use the empty bar, or practise the movement with no bar holding the rack uprights. Never squat without the safety bars set.",
+      "progress_when": "This phase is about the skill, not the weight. Progress means every rep looks the same: full depth, heels down, chest up, knees over your feet. The weight stays between the empty bar and 30 kg until Dad says otherwise.",
       "video_search_query": "barbell back squat beginner proper form rack safety bars",
       "video_search_url": "https://www.youtube.com/results?search_query=barbell+back+squat+beginner+proper+form+rack+safety+bars",
       "video_url": "",
@@ -3504,7 +3622,11 @@
           "external_oblique",
           "gluteus_medius"
         ]
-      }
+      },
+      "alternatives": [
+        "belt_squat",
+        "hack_squat"
+      ]
     },
     "belt_squat": {
       "id": "belt_squat",
@@ -3576,7 +3698,11 @@
           "gluteus_medius",
           "erector_spinae"
         ]
-      }
+      },
+      "alternatives": [
+        "hack_squat",
+        "leg_press"
+      ]
     },
     "wide_pulldown": {
       "id": "wide_pulldown",
@@ -3645,7 +3771,11 @@
           "rotator_cuff",
           "erector_spinae"
         ]
-      }
+      },
+      "alternatives": [
+        "pulldown",
+        "assisted_pullup"
+      ]
     },
     "cable_row_pause": {
       "id": "cable_row_pause",
@@ -3713,7 +3843,11 @@
           "erector_spinae",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "row",
+        "cable_row"
+      ]
     },
     "y_row": {
       "id": "y_row",
@@ -3780,7 +3914,10 @@
           "erector_spinae",
           "rectus_abdominis"
         ]
-      }
+      },
+      "alternatives": [
+        "reverse_fly"
+      ]
     },
     "preacher_curl": {
       "id": "preacher_curl",
@@ -3844,7 +3981,11 @@
         "stabilisers": [
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "behind_body_curl",
+        "curl"
+      ]
     },
     "spider_curl": {
       "id": "spider_curl",
@@ -3908,7 +4049,11 @@
         "stabilisers": [
           "forearm_flexors"
         ]
-      }
+      },
+      "alternatives": [
+        "curl",
+        "hammer_curl"
+      ]
     },
     "incline_cable_fly": {
       "id": "incline_cable_fly",
@@ -3973,7 +4118,11 @@
           "rotator_cuff",
           "biceps_brachii"
         ]
-      }
+      },
+      "alternatives": [
+        "cable_fly",
+        "chest_press"
+      ]
     },
     "close_grip_press": {
       "id": "close_grip_press",
@@ -4038,7 +4187,11 @@
           "serratus_anterior",
           "rotator_cuff"
         ]
-      }
+      },
+      "alternatives": [
+        "pressdown",
+        "overhead_ext"
+      ]
     },
     "calf_seated": {
       "id": "calf_seated",
@@ -4097,7 +4250,83 @@
           "gastrocnemius"
         ],
         "stabilisers": []
-      }
+      },
+      "alternatives": [
+        "calf"
+      ]
+    },
+    "cable_pull_through": {
+      "id": "cable_pull_through",
+      "name": "Cable Pull-Through (rope between the legs)",
+      "diagram_key": "back_extension",
+      "position": "Lengthened",
+      "position_why": "This exercise loads the glutes and hamstrings while they are stretched, as your hips push back.",
+      "trains": "The glutes and hamstrings, worked in a stretched (lengthened) position. It is the hip-hinge pattern of a Romanian deadlift, but the cable pulls from behind and the weight stays light, so your lower back is not balancing a bar.",
+      "find_equipment": "A low cable pulley with a rope attachment. You stand facing away from the machine with the rope between your legs, and walk forward until the weight is lifted.",
+      "setup": [
+        "Set the pulley to its lowest position and attach the rope.",
+        "Face away from the machine, reach between your legs and hold the rope ends with both hands.",
+        "Walk forward two or three steps until the weight is lifted and the cable is tight.",
+        "Feet about shoulder width, knees soft, back flat.",
+        "Start light. The glutes should do the work, not your arms or lower back."
+      ],
+      "starting_position": [
+        "Feet: shoulder width, facing away from the machine.",
+        "Hands: holding the rope between your legs, arms straight and relaxed.",
+        "Back: flat and neutral, chest up.",
+        "Knees: soft, not locked."
+      ],
+      "how_to_rep": [
+        "Push your hips straight back and let your chest come forward, keeping your back flat, until you feel a stretch in your hamstrings.",
+        "Breathe in as you hinge back. Your hands follow the rope back between your legs; your arms stay straight.",
+        "Keep your knees soft; the movement is at the hips, not a squat.",
+        "Drive your hips forward to stand tall and squeeze your glutes at the top. Do not lean back past standing.",
+        "Breathe out as you stand up. Lower for about two to three seconds into the next rep."
+      ],
+      "feel_do": "A stretch in your hamstrings at the bottom and a strong squeeze in your glutes at the top.",
+      "feel_dont": "You should not feel it in your lower back or your arms. If you do, the weight is too heavy or your back is rounding.",
+      "common_mistakes": [
+        "Rounding the lower back instead of pushing the hips back.",
+        "Bending the knees a lot and turning it into a squat.",
+        "Pulling with the arms.",
+        "Leaning back and arching at the top.",
+        "Too much weight."
+      ],
+      "stop_set_when": [
+        "Your back starts to round, or you feel it in your lower back instead of your glutes and hamstrings.",
+        "You have completed the planned reps.",
+        "The next rep would need a bounce, swing or twist to finish.",
+        "The movement gets shorter just to keep going.",
+        "Fewer than two clean reps look likely.",
+        "You feel sharp pain, joint pain or anything unusual."
+      ],
+      "easier_option": "Lighter weight or a smaller range (do not hinge as far). If the cable is busy, do the hip thrust machine.",
+      "progress_when": "When every set reaches the top of the range with a flat back, a clear hamstring stretch and about two reps left, add the smallest increase.",
+      "video_search_query": "cable pull through rope hip hinge glutes hamstrings proper form",
+      "video_search_url": "https://www.youtube.com/results?search_query=cable+pull+through+rope+hip+hinge+glutes+hamstrings+proper+form",
+      "video_url": "",
+      "needs_photo": true,
+      "photo_url": "",
+      "ask_dad_before_loading": false,
+      "muscle_involvement": {
+        "prime_movers": [
+          "gluteus_maximus",
+          "biceps_femoris",
+          "semitendinosus",
+          "semimembranosus"
+        ],
+        "synergists": [
+          "adductor_magnus"
+        ],
+        "stabilisers": [
+          "erector_spinae",
+          "rectus_abdominis"
+        ]
+      },
+      "alternatives": [
+        "hip_thrust",
+        "back_extension"
+      ]
     }
   }
 }

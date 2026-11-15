@@ -23,7 +23,19 @@ export interface ExerciseProgress {
   log: ExerciseLogRow | undefined
 }
 
-export function exerciseProgress(item: WorkoutItem, sets: SetLogRow[], logs: ExerciseLogRow[]): ExerciseProgress {
+/**
+ * The exercise actually being done for a workout item this session. If Lucas swapped the planned
+ * exercise for one of its alternatives (machine busy), the planned exercise's log says which one.
+ */
+export function resolveItem(item: WorkoutItem, logs: ExerciseLogRow[]): { item: WorkoutItem; swappedFrom: string | null } {
+  const planned = logs.find((l) => l.exercise_id === item.exercise_id && !l.deleted)
+  const to = planned?.swapped_to
+  if (to && to !== item.exercise_id) return { item: { ...item, exercise_id: to }, swappedFrom: item.exercise_id }
+  return { item, swappedFrom: null }
+}
+
+export function exerciseProgress(plannedItem: WorkoutItem, sets: SetLogRow[], logs: ExerciseLogRow[]): ExerciseProgress {
+  const { item } = resolveItem(plannedItem, logs)
   const spec = logSpecFor(item)
   const mine = sets.filter((s) => s.exercise_id === item.exercise_id && !s.deleted && !s.is_warmup)
   // A per-side item counts a set once both sides are logged.

@@ -87,7 +87,7 @@ const exerciseRows: Row[] = (Object.values(seed.exercises) as Row[]).map((e: Row
   stop_set_when: e.stop_set_when, easier_option: e.easier_option, progress_when: e.progress_when,
   video_search_query: e.video_search_query, video_search_url: e.video_search_url,
   video_url: e.video_url, needs_photo: e.needs_photo, photo_url: e.photo_url,
-  ask_dad_before_loading: e.ask_dad_before_loading, updated_at: now,
+  ask_dad_before_loading: e.ask_dad_before_loading, alternatives: e.alternatives ?? [], updated_at: now,
 }))
 // video_url / photo_url are coach-owned once set: never clobber a non-empty value with the seed's empty one.
 {
