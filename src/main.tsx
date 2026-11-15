@@ -6,8 +6,10 @@ import { App } from './app/App'
 import { applyTheme, getTheme } from './lib/theme'
 import { ensurePlanCache } from './plan/cache'
 import { startSync } from './sync/engine'
+import { startAppUpdates } from './pwa'
 
 applyTheme(getTheme())
+startAppUpdates()
 void ensurePlanCache().then(() => startSync())
 
 createRoot(document.getElementById('root')!).render(
